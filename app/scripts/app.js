@@ -29,6 +29,16 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/newcase', {
+        templateUrl: 'views/newcase.html',
+        controller: 'NewcaseCtrl',
+        controllerAs: 'newcase'
+      })
+      .when('/casedetails', {
+        templateUrl: 'views/casedetails.html',
+        controller: 'CasedetailsCtrl',
+        controllerAs: 'casedetails'
+      })
       .otherwise({
         redirectTo: '/'
       });
