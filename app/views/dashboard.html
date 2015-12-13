@@ -41,7 +41,12 @@
           <td>{{case.active}}</td>
           <td>{{case.completed}}</td>
           <td>{{case.terminated}}</td>
-          <td><a ng-href="#/casedetails/{{case.id}}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+          <td>
+            <a ng-href="#/casedetails/{{case.id}}"><span class="glyphicon glyphicon-zoom-in"></span></a>
+            <a ng-href=""><span class="glyphicon glyphicon-pause"></span></a>
+            <a ng-href=""><span class="glyphicon glyphicon-paperclip"></span></a>
+            <a ng-href=""><span class="glyphicon glyphicon-comment"></span></a>
+          </td>
         </tr>
         </tbody>
       </table>

@@ -8,10 +8,13 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('CasedetailsCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('CaseDetailsCtrl',
+  function ($scope, $location, $routeParams, camundaCaseService) {
+    var caseId = $routeParams.caseId;
+    $scope.case = camundaCaseService.getCaseById(caseId);
+
+    $scope.goToListView = function() {
+      $location.path('/');
+    };
+
   });
