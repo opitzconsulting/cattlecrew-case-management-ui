@@ -30,13 +30,13 @@ angular
         controllerAs: 'about'
       })
       .when('/newcase', {
-        templateUrl: 'views/newcase.html',
-        controller: 'NewcaseCtrl',
+        templateUrl: 'views/newCase.html',
+        controller: 'NewCaseCtrl',
         controllerAs: 'newcase'
       })
-      .when('/casedetails', {
-        templateUrl: 'views/casedetails.html',
-        controller: 'CasedetailsCtrl',
+      .when('/casedetails/:caseId', {
+        templateUrl: 'views/caseDetails.html',
+        controller: 'CaseDetailsCtrl',
         controllerAs: 'casedetails'
       })
       .otherwise({

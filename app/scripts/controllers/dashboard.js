@@ -8,10 +8,6 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('DashboardCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('DashboardCtrl', function ($scope, camundaCaseService) {
+    $scope.cases = camundaCaseService.getCases();
   });

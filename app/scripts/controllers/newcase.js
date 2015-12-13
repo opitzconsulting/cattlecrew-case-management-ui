@@ -8,10 +8,5 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('NewcaseCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('NewCaseCtrl', function () {
   });

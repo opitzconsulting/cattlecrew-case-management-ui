@@ -1,23 +1,20 @@
 'use strict';
 
-describe('Controller: CasedetailsCtrl', function () {
+describe('Controller: CaseDetailsCtrl', function () {
 
   // load the controller's module
   beforeEach(module('cattlecrewCaseManagementUiApp'));
 
-  var CasedetailsCtrl,
+  var CaseDetailsCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    CasedetailsCtrl = $controller('CasedetailsCtrl', {
+    CaseDetailsCtrl = $controller('CaseDetailsCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(CasedetailsCtrl.awesomeThings.length).toBe(3);
-  });
 });

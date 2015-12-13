@@ -7,7 +7,21 @@
 </div>
 
 <div class="row marketing">
-  <p>This is the casedetails view.</p>
+
+  <p>This is the casedetails view for case with id</p>
+
+  <h2 ng-bind="case.id"></h2>
+
+  <ul>
+    <li ng-bind-template="businessKey: {{case.businessKey}}"></li>
+    <li ng-bind-template="caseDefinitionId: {{case.caseDefinitionId}}"></li>
+    <li ng-bind-template="active: {{case.active}}"></li>
+    <li ng-bind-template="completed: {{case.completed}}"></li>
+    <li ng-bind-template="terminated: {{case.terminated}}"></li>
+  </ul>
+
+  <a ng-Click="goToListView()" href="">Zurück zur Übersicht</a>
+
 </div>
 
 
