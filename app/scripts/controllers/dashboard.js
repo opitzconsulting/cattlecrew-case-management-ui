@@ -9,5 +9,7 @@
  */
 angular.module('cattlecrewCaseManagementUiApp')
   .controller('DashboardCtrl', function ($scope, camundaCaseService) {
-    $scope.cases = camundaCaseService.getCases();
+    camundaCaseService.getCases().then(function (res) {
+      $scope.cases = res.data;
+    });
   });

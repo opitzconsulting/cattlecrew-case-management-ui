@@ -9,12 +9,14 @@
  */
 angular.module('cattlecrewCaseManagementUiApp')
   .controller('CaseDetailsCtrl',
-  function ($scope, $location, $routeParams, camundaCaseService) {
-    var caseId = $routeParams.caseId;
-    $scope.case = camundaCaseService.getCaseById(caseId);
+    function ($scope, $location, $routeParams, camundaCaseService) {
+      var caseId = $routeParams.caseId;
+      camundaCaseService.getCaseById(caseId).then(function (res) {
+        $scope.case = res.data;
+      });
 
-    $scope.goToListView = function() {
-      $location.path('/');
-    };
+      $scope.goToListView = function () {
+        $location.path('/');
+      };
 
-  });
+    });
