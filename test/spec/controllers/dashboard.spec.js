@@ -5,8 +5,8 @@ describe('Controller: DashboardCtrl', function () {
   // load the controller's module
   beforeEach(module('cattlecrewCaseManagementUiApp'));
 
-  var DashboardCtrl,
-    scope;
+  var DashboardCtrl;
+  var scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
