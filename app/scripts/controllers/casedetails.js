@@ -13,6 +13,8 @@ angular.module('cattlecrewCaseManagementUiApp')
       var caseId = $routeParams.caseId;
       camundaCaseService.getCaseById(caseId).then(function (res) {
         $scope.case = res.data;
+      }, function(error) {
+        console.log('An error occured!', error);
       });
 
       $scope.goToListView = function () {
