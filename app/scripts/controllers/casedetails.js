@@ -8,8 +8,8 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('CaseDetailsCtrl',
-    function ($scope, $location, $routeParams, camundaCaseService) {
+  .controller('CaseDetailsCtrl', function ($scope, $location, $routeParams, camundaCaseService) {
+
       var caseId = $routeParams.caseId;
       camundaCaseService.getCaseById(caseId).then(function (res) {
         $scope.case = res.data;
