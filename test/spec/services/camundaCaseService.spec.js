@@ -36,7 +36,7 @@ describe('Service: camundaCaseService', function() {
   afterEach(function () {
     $httpBackend.verifyNoOutstandingExpectation();
     $httpBackend.verifyNoOutstandingRequest();
-  })
+  });
 
   it('should detect the service ', function () {
     expect(!!camundaCaseService).toBe(true);
@@ -129,8 +129,8 @@ describe('Service: camundaCaseService', function() {
   ];
 
   var invalidCaseIdResponse = {
-    "type": "InvalidRequestException",
-    "message": "Case instance with id test does not exist."
+    'type': 'InvalidRequestException',
+    'message': 'Case instance with id test does not exist.'
   };
 
 });

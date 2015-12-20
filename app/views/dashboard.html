@@ -14,6 +14,7 @@
 
       <label for="searchText">Suchen</label>
       <input id="searchText" type="text" placeholder="Search..." ng-model="searchText">
+      <a class="clear" ng-click="searchText=''"><span class="glyphicon glyphicon-remove"></span></a>
 
       <table class="table table-hover">
         <thead>
@@ -31,7 +32,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="case in cases | orderBy: 'id' | filter: searchText">
+        <tr ng-repeat="case in filteredCases = (cases | orderBy: 'id' | filter: searchText)">
           <td>{{case.businessKey}}</td>
           <td>Claim File</td>
           <td>{{case.id}}</td>
@@ -51,7 +52,7 @@
         </tbody>
       </table>
 
-      <p class="text-right">Count: XXX</p>
+      <p class="text-right">Es werden {{filteredCases.length}} Cases angezeigt</p>
     </div>
 
   </div>
