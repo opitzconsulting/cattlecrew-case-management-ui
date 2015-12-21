@@ -6,31 +6,47 @@
 		</div>
 		<div class="detailDiv well">
 			<h3>Details</h3>
-			<span class="keySpan row">Title</span><span class="valueSpan"></span>
-			<span class="keySpan row">Status</span><span class="valueSpan"></span>
-			<span class="keySpan row">Instance Id</span><span class="valueSpan"></span>
-			<span class="keySpan row">Priority</span><span class="valueSpan"></span>
-			<span class="keySpan row">Creator</span><span class="valueSpan"></span>
-			<span class="keySpan row">Creation date</span><span class="valueSpan"></span>
-			<span class="keySpan row">Title</span><span class="valueSpan"></span>
+			<h3 ng-bind="case.id"></h3>
+			<ul class="list-group" >
+				<li class="list-group-item" ng-bind-template="Status: {{case.status}}"/>
+				<li class="list-group-item" ng-bind-template="businessKey: {{case.businessKey}}"/>
+				<li class="list-group-item" nng-bind-template="Priority: {{case.priority}}"/>
+				<li class="list-group-item" nng-bind-template="Creator: {{case.creator}}"/>
+				<li class="list-group-item" nng-bind-template="Creation date: {{case.creationDate}}"/>
+				<li class="list-group-item" nng-bind-template="Updated by: {{case.updatedBy}}"/>
+				<li class="list-group-item" nng-bind-template="caseDefinitionId: {{case.updatedBy}}"/>
+			</ul>
 		</div>
-
 	</div>
 	<div class="centerColumn col-md-6">
 		<div class="protocolDiv well">
 			<h2>Protocol</h2>
 			<ul class="nav nav-tabs">
 				<li role="presentation" class="active"><a href="#">All</a></li>
-  				<li role="presentation"><a href="#">Data</a></li>
-  				<li role="presentation"><a href="#">Milestones</a></li>
-  				<li role="presentation"><a href="#">Activities</a></li>
-  				<li role="presentation"><a href="#">User</a></li>
-  				<li role="presentation"><a href="#">Comments</a></li>
-  				<li role="presentation"><a href="#">Documents</a></li>
+  				<li role="presentation"><a href="#data">Data</a></li>
+  				<li role="presentation"><a href="#milestones">Milestones</a></li>
+  				<li role="presentation"><a href="#activities">Activities</a></li>
+  				<li role="presentation"><a href="#user">User</a></li>
+  				<li role="presentation"><a href="#comments">Comments</a></li>
 			</ul>
 		</div>
-		<div class="milestoneDiv well">
-			<h2>Milestones</h2>
+		<div class="tab-content">
+			<div class="tab-pane active" id="data">
+				<p>data goes here</p>
+			</div>
+			<div class="tab-pane" id="milestone">
+				<p>milestones go here</p>
+			</div>
+			<div class="tab-pane" id="activies">
+				<p>activities go here</p>
+			</div>
+			<div class="tab-pane " id="user">
+				<p>users go here</p>
+			</div>
+			<div class="tab-pane " id="comments">
+				<p>comments go here</p>
+			</div>
+
 		</div>
 	</div>
 	<div class="rightColumn col-md-3">
@@ -42,6 +58,9 @@
 		</div>
 		<div class= "futureActionDiv well">
 			<h2>Future actions</h2>
+		</div>
+		<div class="milestoneDiv well">
+			<h2>Milestones</h2>
 		</div>
 	</div>
 </div>
