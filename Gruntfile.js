@@ -80,12 +80,6 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              // Enable CORS start
-              connect().use(function (req, res, next) {
-                res.setHeader('Access-Control-Allow-Origin', '*');
-                next();
-              }),
-              // Enable CORS end
               connect.static('.tmp'),
               connect().use(
                 '/bower_components',
