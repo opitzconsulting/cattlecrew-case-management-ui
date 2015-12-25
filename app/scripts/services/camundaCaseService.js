@@ -21,13 +21,25 @@ angular.module('cattlecrewCaseManagementUiApp')
     //
     srv.getCases = function() {
       return $http.get(
-        srv._baseUrl + '/engine-rest/case-instance'
+        srv._baseUrl + '/case-instance'
       );
     };
 
-    srv.getCaseById = function(id) {
+    srv.getCaseById = function(caseId) {
       return $http.get(
-        srv._baseUrl + '/engine-rest/case-instance/' + id
+        srv._baseUrl + '/case-instance/' + caseId
+      );
+    };
+
+    srv.getCaseDefinitions = function() {
+      return $http.get(
+        srv._baseUrl + '/case-definition'
+      );
+    };
+
+    srv.getCaseDefinitionById = function(caseDefinitionId) {
+      return $http.get(
+        srv._baseUrl + '/case-definition/' + caseDefinitionId
       );
     };
 
@@ -38,8 +50,14 @@ angular.module('cattlecrewCaseManagementUiApp')
       getCases: function () {
         return srv.getCases();
       },
-      getCaseById: function(id) {
-        return srv.getCaseById(id);
+      getCaseById: function(caseId) {
+        return srv.getCaseById(caseId);
+      },
+      getCaseDefinitions: function() {
+        return srv.getCaseDefinitions();
+      },
+      getCaseDefinitionById: function(caseDefinitionId) {
+        return srv.getCaseDefinitionById(caseDefinitionId);
       }
     };
   });

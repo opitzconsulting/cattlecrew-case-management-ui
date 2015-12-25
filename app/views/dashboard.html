@@ -12,9 +12,19 @@
 
     <div class="table-responsive">
 
-      <label for="searchText">Suchen</label>
-      <input id="searchText" type="text" placeholder="Search..." ng-model="searchText">
-      <a class="clear" ng-click="searchText=''"><span class="glyphicon glyphicon-remove"></span></a>
+      <div class="col-md-4">
+        <label for="searchText">Suchen</label>
+        <input id="searchText" type="text" placeholder="Suchen..." ng-model="searchText">
+        <a class="clear" ng-click="searchText=''"><span class="glyphicon glyphicon-remove"></span></a>
+      </div>
+
+      <div class="col-md-8">
+        <label for="filterCase">Filtern</label>
+        <select id="filterCase" ng-model="selectedCaseDefinition"
+                ng-options="caseDefinition.key for caseDefinition in caseDefinitions">
+          <option value="">-- choose definition --</option>
+        </select>
+      </div>
 
       <table class="table table-hover">
         <thead>
@@ -34,7 +44,7 @@
         <tbody>
         <tr ng-repeat="case in filteredCases = (cases | orderBy: 'id' | filter: searchText)">
           <td>{{case.businessKey}}</td>
-          <td>Claim File</td>
+          <td>{{case.caseDefinitionId}}</td>
           <td>{{case.id}}</td>
           <td></td>
           <td></td>
