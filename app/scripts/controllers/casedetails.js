@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc function
- * @name cattlecrewCaseManagementUiApp.controller:CasedetailsCtrl
+ * @name cattlecrewCaseManagementUiApp.controller:CaseDetailsCtrl
  * @description
- * # CasedetailsCtrl
+ * # CaseDetailsCtrl
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')

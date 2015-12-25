@@ -2,22 +2,22 @@
 
 /**
  * @ngdoc function
- * @name cattlecrewCaseManagementUiApp.controller:MainCtrl
+ * @name cattlecrewCaseManagementUiApp.controller:DashboardCtrl
  * @description
- * # MainCtrl
+ * # DashboardCtrl
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
   .controller('DashboardCtrl', function ($scope, camundaCaseService) {
 
-    camundaCaseService.getCaseDefinitions().then(function (res) {
-      $scope.caseDefinitions = res.data;
+    camundaCaseService.getCaseDefinitions().then(function (result) {
+      $scope.caseDefinitions = result.data;
     }, function(error) {
       console.log('An error occured!', error);
     });
 
-    camundaCaseService.getCases().then(function (res) {
-      $scope.cases = res.data;
+    camundaCaseService.getCases().then(function (result) {
+      $scope.cases = result.data;
     }, function(error) {
       console.log('An error occured!', error);
     });
