@@ -42,7 +42,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="case in filteredCases = (cases | orderBy: 'id' | filter: searchText)">
+        <tr ng-repeat="case in resultedCases = (cases | orderBy: casesOrderBy.predicate : casesOrderBy.reverse | filter: searchText)">
           <td>{{case.businessKey}}</td>
           <td>{{case.caseDefinitionId}}</td>
           <td>{{case.id}}</td>
@@ -59,7 +59,7 @@
         </tbody>
       </table>
 
-      <p class="text-right">Es werden {{filteredCases.length}} Cases angezeigt</p>
+      <p class="text-right">Es werden {{resultedCases.length}} Cases angezeigt</p>
     </div>
 
   </div>
