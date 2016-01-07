@@ -2,19 +2,23 @@
 
 /**
  * @ngdoc function
- * @name cattlecrewCaseManagementUiApp.controller:CasedetailsCtrl
+ * @name cattlecrewCaseManagementUiApp.controller:CaseDetailsCtrl
  * @description
- * # CasedetailsCtrl
+ * # CaseDetailsCtrl
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('CaseDetailsCtrl',
-  function ($scope, $location, $routeParams, camundaCaseService) {
-    var caseId = $routeParams.caseId;
-    $scope.case = camundaCaseService.getCaseById(caseId);
+  .controller('CaseDetailsCtrl', function ($scope, $location, $routeParams, camundaCaseService) {
 
-    $scope.goToListView = function() {
-      $location.path('/');
-    };
+      var caseId = $routeParams.caseId;
+      camundaCaseService.getCaseById(caseId).then(function (res) {
+        $scope.case = res.data;
+      }, function(error) {
+        console.log('An error occured!', error);
+      });
 
-  });
+      $scope.goToListView = function () {
+        $location.path('/');
+      };
+
+    });
