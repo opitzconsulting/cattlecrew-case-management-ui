@@ -7,5 +7,16 @@
 </div>
 
 <div class="row marketing">
-  <p>This is the newcase view.</p>
+  <div class="col-md-2">
+    <div class="row">
+      <h3>Available case definitions</h3>
+    </div>
+    <div class="row">
+      <div class="list-group">
+        <a ng-repeat="caseDefinition in caseDefinitions" href="#/newcase" class="list-group-item">
+          <h4 class="list-group-item-heading">{{caseDefinition.key}}</h4>
+        </a>
+      </ul>
+    </div>
+  </div>
 </div>

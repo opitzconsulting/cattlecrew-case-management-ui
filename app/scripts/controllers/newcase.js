@@ -8,5 +8,6 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('NewCaseCtrl', function () {
+  .controller('NewCaseCtrl', function ($scope, camundaCaseDefinitionService) {
+    $scope.caseDefinitions = camundaCaseDefinitionService.getCaseDefinitions();
   });
