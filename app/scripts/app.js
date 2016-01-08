@@ -35,7 +35,7 @@ angular
         controllerAs: 'newcase'
       })
       .when('/casedetails/:caseId', {
-        templateUrl: 'views/caseDetails.html',
+        templateUrl: 'views/details.html',
         controller: 'CaseDetailsCtrl',
         controllerAs: 'casedetails'
       })
