@@ -12,8 +12,19 @@
 
     <div class="table-responsive">
 
-      <label for="searchText">Suchen</label>
-      <input id="searchText" type="text" placeholder="Search..." ng-model="searchText">
+      <div class="col-md-4">
+        <label for="searchText">Suchen</label>
+        <input id="searchText" type="text" placeholder="Suchen..." ng-model="searchText">
+        <a class="clear" ng-click="searchText=''"><span class="glyphicon glyphicon-remove"></span></a>
+      </div>
+
+      <div class="col-md-8">
+        <label for="filterCase">Filtern</label>
+        <select id="filterCase" ng-model="selectedCaseDefinition"
+                ng-options="caseDefinition.key for caseDefinition in caseDefinitions">
+          <option value="">-- choose definition --</option>
+        </select>
+      </div>
 
       <table class="table table-hover">
         <thead>
@@ -31,9 +42,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="case in cases | orderBy: 'id' | filter: searchText">
+        <tr ng-repeat="case in resultedCases = (cases | orderBy: casesOrderBy.predicate : casesOrderBy.reverse | filter: searchText)">
           <td>{{case.businessKey}}</td>
-          <td>Claim File</td>
+          <td>{{case.caseDefinitionId}}</td>
           <td>{{case.id}}</td>
           <td></td>
           <td></td>
@@ -43,15 +54,12 @@
           <td>{{case.terminated}}</td>
           <td>
             <a ng-href="#/casedetails/{{case.id}}"><span class="glyphicon glyphicon-zoom-in"></span></a>
-            <a ng-href=""><span class="glyphicon glyphicon-pause"></span></a>
-            <a ng-href=""><span class="glyphicon glyphicon-paperclip"></span></a>
-            <a ng-href=""><span class="glyphicon glyphicon-comment"></span></a>
           </td>
         </tr>
         </tbody>
       </table>
 
-      <p class="text-right">Count: XXX</p>
+      <p class="text-right">Es werden {{resultedCases.length}} Cases angezeigt</p>
     </div>
 
   </div>

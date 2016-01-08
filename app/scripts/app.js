@@ -30,7 +30,7 @@ angular
         controllerAs: 'about'
       })
       .when('/newcase', {
-        templateUrl: 'views/newCase.html',
+        templateUrl: 'views/newcase.html',
         controller: 'NewCaseCtrl',
         controllerAs: 'newcase'
       })

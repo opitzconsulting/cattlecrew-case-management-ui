@@ -8,7 +8,7 @@
  * Factory in the cattlecrewCaseManagementUiApp.
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .factory('camundaCaseService', function () {
+  .factory('camundaCaseService', function ($http, camundaConstantsService) {
     //
     // local namespace
     //
@@ -81,21 +81,28 @@ angular.module('cattlecrewCaseManagementUiApp')
     //
     // Service logic
     //
-
     srv.getCases = function() {
-      // Copy the array in order not to expose
-      // the internal data structure
-      return angular.copy(srv._cases);
+      return $http.get(
+        srv._baseUrl + '/case-instance'
+      );
     };
 
-    srv.getCaseById = function(id) {
-      for (var i = 0, n = srv._cases.length; i < n; i++) {
-        if (id === srv._cases[i].id) {
-          return angular.copy(srv._cases[i]);
-        }
-      }
+    srv.getCaseById = function(caseId) {
+      return $http.get(
+        srv._baseUrl + '/case-instance/' + caseId
+      );
+    };
 
-      return null;
+    srv.getCaseDefinitions = function() {
+      return $http.get(
+        srv._baseUrl + '/case-definition'
+      );
+    };
+
+    srv.getCaseDefinitionById = function(caseDefinitionId) {
+      return $http.get(
+        srv._baseUrl + '/case-definition/' + caseDefinitionId
+      );
     };
 
     //
@@ -105,8 +112,14 @@ angular.module('cattlecrewCaseManagementUiApp')
       getCases: function () {
         return srv.getCases();
       },
-      getCaseById: function(id) {
-        return srv.getCaseById(id);
+      getCaseById: function(caseId) {
+        return srv.getCaseById(caseId);
+      },
+      getCaseDefinitions: function() {
+        return srv.getCaseDefinitions();
+      },
+      getCaseDefinitionById: function(caseDefinitionId) {
+        return srv.getCaseDefinitionById(caseDefinitionId);
       }
     };
   });

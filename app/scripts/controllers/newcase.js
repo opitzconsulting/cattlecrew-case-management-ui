@@ -2,11 +2,16 @@
 
 /**
  * @ngdoc function
- * @name cattlecrewCaseManagementUiApp.controller:NewcaseCtrl
+ * @name cattlecrewCaseManagementUiApp.controller:NewCaseCtrl
  * @description
- * # NewcaseCtrl
+ * # NewCaseCtrl
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('NewCaseCtrl', function () {
+  .controller('NewCaseCtrl', function ($scope, camundaCaseDefinitionService) {
+    $scope.caseDefinitions = camundaCaseDefinitionService.getCaseDefinitions();
+    
+    $scope.setSelectedCaseDefinition = function (selectedCaseDefinition){
+      $scope.selectedCaseDefinition = selectedCaseDefinition;
+    };
   });
