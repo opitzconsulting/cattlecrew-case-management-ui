@@ -22,7 +22,14 @@ angular.module('cattlecrewCaseManagementUiApp')
         'businessKey': null,
         'active': true,
         'completed': false,
-        'terminated': false
+        'terminated': false,
+	'createTime': "2016-01-07T18:29:18",
+	'closeTime' : null,
+	'durationInMillis' : null,
+	'createUserId' : null,
+	'superCaseInstanceId' : null,
+	'priority' : null,
+	
       },
       {
         'links': [],
