@@ -6,15 +6,14 @@
 		</div>
 		<div class="detailDiv well">
 			<h3>Details</h3>
-			<h3 ng-bind="case.id"></h3>
+			<p ng-bind="case.id"></p>
 			<ul class="list-group" >
 				<li class="list-group-item" ng-bind-template="Status: {{case.status}}"/>
-				<li class="list-group-item" ng-bind-template="businessKey: {{case.businessKey}}"/>
-				<li class="list-group-item" nng-bind-template="Priority: {{case.priority}}"/>
-				<li class="list-group-item" nng-bind-template="Creator: {{case.creator}}"/>
-				<li class="list-group-item" nng-bind-template="Creation date: {{case.creationDate}}"/>
-				<li class="list-group-item" nng-bind-template="Updated by: {{case.updatedBy}}"/>
-				<li class="list-group-item" nng-bind-template="caseDefinitionId: {{case.updatedBy}}"/>
+				<li class="list-group-item" ng-bind-template="BusinessKey: {{case.businessKey}}"/>
+				<li class="list-group-item" ng-bind-template="Priority: {{case.priority}}"/>
+				<li class="list-group-item" ng-bind-template="Creator: {{case.createUserId}}"/>
+				<li class="list-group-item" ng-bind-template="Creation date: {{case.creationDate}}"/>
+				<li class="list-group-item" ng-bind-template="Updated by: {{case.updatedBy}}"/>
 			</ul>
 		</div>
 	</div>
@@ -22,31 +21,30 @@
 		<div class="protocolDiv well">
 			<h2>Protocol</h2>
 			<ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a href="#">All</a></li>
-  				<li role="presentation"><a href="#data">Data</a></li>
-  				<li role="presentation"><a href="#milestones">Milestones</a></li>
-  				<li role="presentation"><a href="#activities">Activities</a></li>
-  				<li role="presentation"><a href="#user">User</a></li>
-  				<li role="presentation"><a href="#comments">Comments</a></li>
+				<li role="presentation" data-toggle="tab" class="active"><a showtab="" href="#">All</a></li>
+  				<li role="presentation" data-toggle="tab"><a showtab="" href="#data">Data</a></li>
+  				<li role="presentation" data-toggle="tab"><a showtab="" href="#milestones">Milestones</a></li>
+  				<li role="presentation" data-toggle="tab"><a showtab="" href="#activities">Activities</a></li>
+  				<li role="presentation" data-toggle="tab"><a showtab="" href="#user">User</a></li>
+  				<li role="presentation" data-toggle="tab"><a showtab="" href="#comments">Comments</a></li>
 			</ul>
-		</div>
-		<div class="tab-content">
-			<div class="tab-pane active" id="data">
-				<p>data goes here</p>
+			<div class="tab-content">
+				<div class="tab-pane active" id="data">
+					<p>data goes here</p>
+				</div>
+				<div class="tab-pane" id="milestone">
+					<p>milestones go here</p>
+				</div>
+				<div class="tab-pane" id="activies">
+					<p>activities go here</p>
+				</div>
+				<div class="tab-pane " id="user">
+					<p>users go here</p>
+				</div>
+				<div class="tab-pane " id="comments">
+					<p>comments go here</p>
+				</div>
 			</div>
-			<div class="tab-pane" id="milestone">
-				<p>milestones go here</p>
-			</div>
-			<div class="tab-pane" id="activies">
-				<p>activities go here</p>
-			</div>
-			<div class="tab-pane " id="user">
-				<p>users go here</p>
-			</div>
-			<div class="tab-pane " id="comments">
-				<p>comments go here</p>
-			</div>
-
 		</div>
 	</div>
 	<div class="rightColumn col-md-3">
@@ -61,6 +59,9 @@
 		</div>
 		<div class="milestoneDiv well">
 			<h2>Milestones</h2>
+                        <div ng-repeat="milestone in milestones | orderBy: 'createTime' ">
+				<span class="{{milestone.completed  ? 'label-success' : 'label-default'}}" >{{milestone.caseActivityName}}</span>
+			</div>
 		</div>
 	</div>
 </div>
