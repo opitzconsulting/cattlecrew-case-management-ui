@@ -19,25 +19,26 @@ angular.module('cattlecrewCaseManagementUiApp')
     var srv = {};
 
     srv._baseUrl = camundaConstantsService.baseUrl;
-    srv.serverHost = '13579';
-    srv.serverUrl = 'http://localhost:'+ srv.serverHost;
-    srv.engineUrl = '/engine-rest/history/case-instance:caseID';
-    srv.history = $resource ( srv.serverUrl + srv.engineUrl )  ;
-    console.log(srv.cases);
+    srv.historyUrl = '/history/case-instance/'; 
+
+
     //
     // Service logic
     //
 
-    srv.getHistoryById = function(id) {
-	return srv.history.query().$promise;
+    srv.getHistoryById = function(caseId) {
+    srv.query = srv._baseUrl + srv.historyUrl + caseId;
+    console.log(srv.query);
+    srv.history = $resource ( srv.query); 
+	return srv.history.get(caseId).$promise;
     };
 
     //
     // Public API
     //
     return {
-      getHistoryById: function(id) {
-        return srv.getHistoryById(id);
+      getHistoryById: function(caseId) {
+        return srv.getHistoryById(caseId);
       }
     };
   });
