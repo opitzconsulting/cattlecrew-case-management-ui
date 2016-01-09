@@ -53,7 +53,8 @@ angular.module('cattlecrewCaseManagementUiApp')
       };
       
       $scope.toggleStartActivityDialog= function (activityId, activityName) {
-       console.log('TODO Start new : '+ activityName);
+	camundaActivityService.startActivity(activityId);
+       console.log('Starting new : '+ activityName);
       };
 
     });
