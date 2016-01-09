@@ -27,9 +27,9 @@ angular.module('cattlecrewCaseManagementUiApp')
     //
 
     srv.getHistoryById = function(caseId) {
-    srv.query = srv._baseUrl + srv.historyUrl + caseId;
-    console.log(srv.query);
-    srv.history = $resource ( srv.query); 
+        srv.query = srv._baseUrl + srv.historyUrl + caseId;
+        console.log(srv.query);
+        srv.history = $resource ( srv.query); 
 	return srv.history.get(caseId).$promise;
     };
 
