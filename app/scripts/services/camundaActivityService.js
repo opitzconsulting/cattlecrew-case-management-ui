@@ -15,6 +15,7 @@ angular.module('cattlecrewCaseManagementUiApp')
     var srv = {};
     srv._baseUrl = camundaConstantsService.baseUrl;
     srv.enabledActivitiesUrl = '/history/case-activity-instance?enabled=true&caseInstanceId='; 
+    srv.allActivitiesUrl = '/history/case-activity-instance?caseInstanceId=';
     srv.startActivityUrl = '/case-execution/:activityID/manual-start';
     srv.activity = $resource( srv._baseUrl + '/case-execution/:activityID/manual-start', {}, {
             activate: {method: "POST", isArray: true}
@@ -86,9 +87,19 @@ angular.module('cattlecrewCaseManagementUiApp')
         });
     };
 
+    srv.getAllActivities = function (caseId) {
+      srv.query = srv._baseUrl + srv.allActivitiesUrl + caseId;
+      console.log(srv.query);
+      srv.history = $resource ( srv.query); 
+      return srv.history.query(caseId).$promise;
+    };
+
     // Public API
     //
     return {
+      getAllActivities: function (caseId) {
+	return srv.getAllActivities(caseId);
+     },
       getEnabledActivities: function (caseId) {
         return srv.getEnabledActivities(caseId);
       },

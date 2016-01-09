@@ -30,10 +30,28 @@
 					<p>data goes here</p>
 				</div>
 				<div class="tab-pane fade" id="milestone">
-					<p>milestones go here</p>
+					<table>
+						<thead>
+						</thead>
+						<tbody>
+							<tr ng-repeat="activity in allActivities | filter: applicableMilestone(activity.caseActivityType)">
+								<td>Milestone {{activity.endTime ? 'created' : 'completed'}}</td>
+								<td>{{activity.endTime ? activity.endTime : activity.startTime}}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<div class="tab-pane fade" id="activies">
-					<p>activities go here</p>
+					<table>
+						<thead>
+						</thead>
+						<tbody>
+							<tr ng-repeat="activity in allActivities | filter: applicableActivity(activity.caseActivityType)">
+								<td>Activity {{activity.endTime ? 'started' : 'completed'}}</td>
+								<td>{{activity.endTime ? activity.endTime : activity.startTime}}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

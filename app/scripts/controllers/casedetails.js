@@ -36,9 +36,16 @@ angular.module('cattlecrewCaseManagementUiApp')
         console.log(res);
       }, function (error) {
 	console.log('An error occured!', error);
-      }) 
+      });
 
-      var caseId = $routeParams.caseId;
+      camundaActivityService.getAllActivities(caseId).then( function (res) {
+	$scope.allActivities = res;
+	console.log(' all activities');
+        console.log(res);
+      }, function (error) {
+	console.log('An error occured!', error);
+      }) ;
+
       camundaCaseService.getCaseById(caseId).then(function (res) {
         $scope.case = res.data;
 	console.log('case');
@@ -56,5 +63,13 @@ angular.module('cattlecrewCaseManagementUiApp')
 	camundaActivityService.startActivity(activityId);
        console.log('Starting new : '+ activityName);
       };
+
+      $scope.applicableActivity = function (type) {
+	return 	type == 'humanTask' || type == 'processTask';
+      }
+      $scope.applicableActivity = function (type) {
+	return 	type == 'milestone' ;
+      }
+
 
     });
