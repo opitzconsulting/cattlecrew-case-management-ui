@@ -21,8 +21,14 @@ angular.module('cattlecrewCaseManagementUiApp')
       }, function (error) {
 	console.log('An error occured!', error);
       });
-      $scope.milestones = camundaMilestoneService.getMilestones(caseId);
-      
+
+      camundaMilestoneService.getMilestones(caseId).then(function (res) {
+        $scope.milestones = res;
+        console.log('milestones');
+	console.log(res);
+      }, function (error) {
+        console.log('An error occured!', error);
+      });
 
       camundaActivityService.getEnabledActivities(caseId).then( function (res) {
 	$scope.enabledActivities = res;

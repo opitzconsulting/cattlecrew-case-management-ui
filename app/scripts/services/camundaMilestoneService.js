@@ -8,12 +8,14 @@
  * Factory in the cattlecrewCaseManagementUiApp.
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .factory('camundaMilestoneService', function () {
+  .factory('camundaMilestoneService', function ($resource, camundaConstantsService) {
     //
     // local namespace
     //
     var srv = {};
 
+    srv._baseUrl = camundaConstantsService.baseUrl;
+    srv.allMilestonesUrl = "/history/case-activity-instance?caseActivityType=milestone&caseInstanceId="
     srv._milestones = [
 	{
 		"id":"2e89d49e-b564-11e5-a83c-fecc75749441",
@@ -84,31 +86,20 @@ angular.module('cattlecrewCaseManagementUiApp')
     // Service logic
     //
 
-    srv.getMilestones = function() {
-      // Copy the array in order not to expose
-      // the internal data structure
-      return angular.copy(srv._milestones);
+    srv.getMilestones = function(caseId) {
+      srv.query = srv._baseUrl + srv.allMilestonesUrl + caseId;
+      console.log(srv.query);
+      srv.history = $resource ( srv.query); 
+      return srv.history.query(caseId).$promise;
     };
 
-    srv.getMilestoneById = function(id) {
-      for (var i = 0, n = srv._milestones.length; i < n; i++) {
-        if (id === srv._milestones[i].id) {
-          return angular.copy(milestones._cases[i]);
-        }
-      }
-
-      return null;
-    };
 
     //
     // Public API
     //
     return {
-      getMilestones: function () {
-        return srv.getMilestones();
-      },
-      getMilestoneById: function(id) {
-        return srv.getMilestoneById(id);
+      getMilestones: function (caseId) {
+        return srv.getMilestones(caseId);
       }
     };
   });
