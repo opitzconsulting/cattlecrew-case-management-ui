@@ -13,7 +13,7 @@ angular.module('cattlecrewCaseManagementUiApp')
     // local namespace
     //
     var srv = {};
-
+    srv._baseUrl = camundaConstantsService.baseUrl;
     srv._cases = [
       {
         'links': [],
