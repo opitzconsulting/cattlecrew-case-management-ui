@@ -21,15 +21,12 @@
 		<div class="protocolDiv well">
 			<h2>Protocol</h2>
 			<ul class="nav nav-tabs">
-				<li role="presentation" data-toggle="tab" class="active"><a showtab="" href="#">All</a></li>
-  				<li role="presentation" data-toggle="tab"><a showtab="" href="#data">Data</a></li>
-  				<li role="presentation" data-toggle="tab"><a showtab="" href="#milestones">Milestones</a></li>
-  				<li role="presentation" data-toggle="tab"><a showtab="" href="#activities">Activities</a></li>
-  				<li role="presentation" data-toggle="tab"><a showtab="" href="#user">User</a></li>
-  				<li role="presentation" data-toggle="tab"><a showtab="" href="#comments">Comments</a></li>
+				<li role="presentation" data-toggle="tab" class="active"><a ccrtab="" href="#all">All</a></li>
+  				<li role="presentation" data-toggle="tab"><a ccrtab="" href="#milestones">Milestones</a></li>
+  				<li role="presentation" data-toggle="tab"><a ccrtab="" href="#activities">Activities</a></li>
 			</ul>
 			<div class="tab-content">
-				<div class="tab-pane active" id="data">
+				<div class="tab-pane active" id="all">
 					<p>data goes here</p>
 				</div>
 				<div class="tab-pane" id="milestone">
@@ -38,21 +35,18 @@
 				<div class="tab-pane" id="activies">
 					<p>activities go here</p>
 				</div>
-				<div class="tab-pane " id="user">
-					<p>users go here</p>
-				</div>
-				<div class="tab-pane " id="comments">
-					<p>comments go here</p>
-				</div>
 			</div>
 		</div>
 	</div>
 	<div class="rightColumn col-md-3">
 		<div class="actionDiv well">
-			<h2>Actions</h2>
+	 		<h2>Available actions</h2>
+			<div ng-repeat="activity in enabledActivities">
+				<button class="btn button-default" ng-click="toggleStartActivityDialog(activity.caseActivityId,activity.caseActivityName)">{{activity.caseActivityName}} </button>
+			</div> 
 		</div>
 		<div class="historyDiv well">
-			<h2>History</h2>
+			<h2>Case history</h2>
 		</div>
 		<div class= "futureActionDiv well">
 			<h2>Future actions</h2>
