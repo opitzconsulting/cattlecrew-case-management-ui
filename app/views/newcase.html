@@ -5,7 +5,9 @@
     Create and initialize a new case
   </p>
 </div>
-
+<div ng-if="createdCaseDefinitionId != null" class="alert alert-success" role="alert">
+    created case instance with id {{createdCaseDefinitionId}}
+</div>
 <div class="row marketing">
   <div class="col-md-2">
     <div class="row">
@@ -38,10 +40,10 @@
           <form >
             <div class="form-group">
               <label for="businessKey">Business Key</label>
-              <input type="text" class="form-control" id="businessKey" placeholder="Business Key">
+              <input ng-model="businessKey" type="text" class="form-control" id="businessKey" placeholder="Business Key">
             </div>
             <div class="form-group">
-              <a href="#/newcase" class="btn btn-primary btn-lg pull-right">Create</a>
+              <a ng-click="createCaseInstance(selectedCaseDefinition.key, businessKey)" href="#/newcase" class="btn btn-primary btn-lg pull-right">Create</a>
             </div>
           </form>
         </div>

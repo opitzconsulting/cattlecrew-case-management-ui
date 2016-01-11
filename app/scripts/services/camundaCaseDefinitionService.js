@@ -8,11 +8,14 @@
  * Factory in the cattlecrewCaseManagementUiApp.
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .factory('camundaCaseDefinitionService', function () {
+  .factory('camundaCaseDefinitionService', function ($resource, camundaConstantsService) {
     //
     // local namespace
     //
     var srv = {};
+
+    srv._baseUrl = camundaConstantsService.baseUrl;
+    srv.allCaseDefinitionsUrl = srv._baseUrl + '/case-definition';
 
     srv._caseDefinitions = [
       {
@@ -42,7 +45,19 @@ angular.module('cattlecrewCaseManagementUiApp')
     srv.getCaseDefinitions = function() {
       // Copy the array in order not to expose
       // the internal data structure
-      return angular.copy(srv._caseDefinitions);
+      //return angular.copy(srv._caseDefinitions);
+
+      srv.definitions = $resource(srv.allCaseDefinitionsUrl);
+      //return srv.definitions.query('GET', true).$promise;
+      return srv.definitions.query('GET', true);
+    };
+
+    srv.createCaseInstanceByKey = function(caseDefinitionKey, businessKey){
+      var query = srv._baseUrl + '/case-definition/key/' + caseDefinitionKey + '/create';
+      var create = $resource(query);
+      var body = {};
+      body.businessKey = businessKey;
+      return create.save(body);
     };
 
     //
@@ -50,7 +65,13 @@ angular.module('cattlecrewCaseManagementUiApp')
     //
     return {
       getCaseDefinitions: function () {
+        console.log(srv.getCaseDefinitions());
         return srv.getCaseDefinitions();
+      },
+      createCaseInstanceByKey: function(caseDefinitionKey, businessKey){
+        var result = srv.createCaseInstanceByKey(caseDefinitionKey, businessKey);
+        console.log(result);
+        return result;
       }
     };
   });
