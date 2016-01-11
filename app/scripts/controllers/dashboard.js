@@ -8,26 +8,21 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('DashboardCtrl', function($scope, camundaCaseService) {
+  .controller('DashboardCtrl', function($scope, caseService) {
 
     $scope.initView = function() {
-      $scope.casesOrderBy = {
-        predicate: 'id',
+
+      $scope.casesOrderCondition = {
+        predicate: 'createTime',
         reverse: true
       };
 
-      camundaCaseService.getCaseDefinitions().then(function(result) {
-        $scope.caseDefinitions = result.data;
-      }, function(error) {
-        console.log('An error occured during fetching case definitions!', error);
-      });
+      caseService.updateCaseDefinitions();
+      $scope.caseDefinitionsArrayContainer = caseService.getCaseDefinitionsArrayContainer();
 
-      camundaCaseService.getCases().then(function(result) {
-        $scope.cases = result.data;
-      }, function(error) {
-        console.log('An error occured during fetching cases!', error);
-      });
-
+      caseService.updateCasesOverview();
+      $scope.casesOverviewArrayContainer = caseService.getCasesOverviewArrayContainer();
+      caseService.startPolling();
     };
 
     $scope.initView();

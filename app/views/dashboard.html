@@ -19,10 +19,10 @@
       </div>
 
       <div class="col-md-8">
-        <label for="filterCase">Filtern</label>
+        <label for="filterCase">Art filtern</label>
         <select id="filterCase" ng-model="selectedCaseDefinition"
-                ng-options="caseDefinition.key for caseDefinition in caseDefinitions">
-          <option value="">-- choose definition --</option>
+                ng-options="caseDefinition.key for caseDefinition in caseDefinitionsArrayContainer.caseDefinitionList">
+          <option value="">-- Auswählen --</option>
         </select>
       </div>
 
@@ -33,25 +33,20 @@
           <th>Art</th>
           <th>Technical ID</th>
           <th>Priorität</th>
-          <th>Bearbeiter</th>
+          <th>Erstellt</th>
           <th>Zuletzt bearbeitet</th>
-          <th>Aktiv?</th>
-          <th>Abgeschlossen?</th>
-          <th>Abgebrochen?</th>
-          <th>Actions</th>
+          <th>Status</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="case in resultedCases = (cases | orderBy: casesOrderBy.predicate : casesOrderBy.reverse | filter: searchText)">
+        <tr ng-repeat="case in resultedCases = (casesOverviewArrayContainer.casesList | orderBy: casesOrderCondition.predicate : casesOrderCondition.reverse | filter : {caseDefinition : selectedCaseDefinition.key} : true | filter : searchText)">
           <td>{{case.businessKey}}</td>
-          <td>{{case.caseDefinitionId}}</td>
+          <td>{{case.caseDefinition}}</td>
           <td>{{case.id}}</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>{{case.active}}</td>
-          <td>{{case.completed}}</td>
-          <td>{{case.terminated}}</td>
+          <td>{{case.priority}}</td>
+          <td><span ng-if="case.createByAsString">{{case.createByAsString}} am {{case.createDateAsString}}</span></td>
+          <td><span ng-if="case.updateByAsString">{{case.updateByAsString}} am {{case.updateDateAsString}}</span></td>
+          <td>{{case.state}}</td>
           <td>
             <a ng-href="#/casedetails/{{case.id}}"><span class="glyphicon glyphicon-zoom-in"></span></a>
           </td>
@@ -60,6 +55,7 @@
       </table>
 
       <p class="text-right">Es werden {{resultedCases.length}} Cases angezeigt</p>
+
     </div>
 
   </div>

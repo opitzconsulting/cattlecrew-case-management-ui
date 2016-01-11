@@ -9,5 +9,6 @@
  */
 angular.module('cattlecrewCaseManagementUiApp')
   .constant('camundaConstantsService', {
-    baseUrl : 'http://localhost:8080/engine-rest'
+    baseUrl : 'http://localhost:8080/engine-rest',
+    serverPollingDelay : 5000
   });

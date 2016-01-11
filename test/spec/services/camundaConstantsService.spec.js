@@ -7,6 +7,8 @@ describe('Service: camundaConstantsService', function () {
 
   // instantiate service
   var camundaConstantsService;
+
+  // inject services
   beforeEach(inject(function (_camundaConstantsService_) {
     camundaConstantsService = _camundaConstantsService_;
   }));

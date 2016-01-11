@@ -8,10 +8,39 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('NewCaseCtrl', function ($scope, camundaCaseDefinitionService) {
-    $scope.caseDefinitions = camundaCaseDefinitionService.getCaseDefinitions();
-    
-    $scope.setSelectedCaseDefinition = function (selectedCaseDefinition){
+  .controller('NewCaseCtrl', function ($scope, $location, caseService) {
+
+    $scope.initView = function() {
+      $scope.caseDefinitionsArrayContainer = caseService.getCaseDefinitionsArrayContainer();
+
+      if ($scope.caseDefinitionsArrayContainer.caseDefinitionList.length === 0) {
+        caseService.updateCaseDefinitions();
+      }
+
+      $scope.requestData = {
+        businessKey: null,
+        variables: {
+          priority: {
+            value: null,
+            type: 'String'
+          }
+        }
+      };
+
+    };
+
+    $scope.initView();
+
+    $scope.setSelectedCaseDefinition = function(selectedCaseDefinition) {
       $scope.selectedCaseDefinition = selectedCaseDefinition;
     };
+
+    $scope.createCaseInstance = function(key) {
+      caseService.createCaseInstance(key, $scope.requestData);
+    };
+
+    $scope.goToDashboardView = function () {
+      $location.path('/');
+    };
+
   });
