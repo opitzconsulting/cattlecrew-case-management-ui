@@ -19,22 +19,22 @@ angular.module('cattlecrewCaseManagementUiApp')
 
     srv._caseDefinitions = [
       {
-        "id":"claim:1:10f4c0cc-a58f-11e5-b169-024243fa4415",
-        "key":"claim",
-        "category":"http://cmmn.org",
-        "name":"Forderungsmanagement-Case",
-        "version":1,
-        "resource":"claim.cmmn10.xml",
-        "deploymentId":"10be6e72-a58f-11e5-b169-024243fa4415"
+        'id':'claim:1:10f4c0cc-a58f-11e5-b169-024243fa4415',
+        'key':'claim',
+        'category':'http://cmmn.org',
+        'name':'Forderungsmanagement-Case',
+        'version':1,
+        'resource':'claim.cmmn10.xml',
+        'deploymentId':'10be6e72-a58f-11e5-b169-024243fa4415'
       },
       {
-        "id":"claim_file:1:10f4c0cb-a58f-11e5-b169-024243fa4415",
-        "key":"claim_file",
-        "category":"http://cmmn.org",
-        "name":"Noch ein Case",
-        "version":1,
-        "resource":"claim-file.cmmn10.xml",
-        "deploymentId":"10be6e72-a58f-11e5-b169-024243fa4415"
+        'id':'claim_file:1:10f4c0cb-a58f-11e5-b169-024243fa4415',
+        'key':'claim_file',
+        'category':'http://cmmn.org',
+        'name':'Noch ein Case',
+        'version':1,
+        'resource':'claim-file.cmmn10.xml',
+        'deploymentId':'10be6e72-a58f-11e5-b169-024243fa4415'
       }
     ];
 
