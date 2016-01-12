@@ -2,7 +2,7 @@
   <h1>Dashboard</h1>
 
   <p class="lead">
-    Displaying all currently existing cases
+    Displaying all existing cases
   </p>
 </div>
 
@@ -10,51 +10,68 @@
 
   <div class="col-md-12">
 
-    <div class="table-responsive">
+    <div class="row"> <!-- 1st row -->
 
       <div class="col-md-4">
-        <label for="searchText">Suchen</label>
-        <input id="searchText" type="text" placeholder="Suchen..." ng-model="searchText">
-        <a class="clear" ng-click="searchText=''"><span class="glyphicon glyphicon-remove"></span></a>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <input id="searchText" type="text" class="form-control" placeholder="Search..." ng-model="searchText">
+          </div>
+          <div class="form-group">
+            <a class="clear" ng-click="searchText=''"><span class="glyphicon glyphicon-remove"></span></a>
+          </div>
+        </form>
       </div>
 
       <div class="col-md-8">
-        <label for="filterCase">Art filtern</label>
-        <select id="filterCase" ng-model="selectedCaseDefinition"
-                ng-options="caseDefinition.key for caseDefinition in caseDefinitionsArrayContainer.caseDefinitionList">
-          <option value="">-- Auswählen --</option>
-        </select>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <select id="filterCase" class="form-control" ng-model="selectedCaseDefinition"
+                    ng-options="caseDefinition.key for caseDefinition in caseDefinitionsArrayContainer.caseDefinitionList">
+              <option value="">-- Filter Case --</option>
+            </select>
+          </div>
+        </form>
       </div>
 
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>Business ID</th>
-          <th>Art</th>
-          <th>Technical ID</th>
-          <th>Priorität</th>
-          <th>Erstellt</th>
-          <th>Zuletzt bearbeitet</th>
-          <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="case in resultedCases = (casesOverviewArrayContainer.casesList | orderBy: casesOrderCondition.predicate : casesOrderCondition.reverse | filter : {caseDefinition : selectedCaseDefinition.key} : true | filter : searchText)">
-          <td>{{case.businessKey}}</td>
-          <td>{{case.caseDefinition}}</td>
-          <td>{{case.id}}</td>
-          <td>{{case.priority}}</td>
-          <td><span ng-if="case.createByAsString">{{case.createByAsString}} am {{case.createDateAsString}}</span></td>
-          <td><span ng-if="case.updateByAsString">{{case.updateByAsString}} am {{case.updateDateAsString}}</span></td>
-          <td>{{case.state}}</td>
-          <td>
-            <a ng-href="#/casedetails/{{case.id}}"><span class="glyphicon glyphicon-zoom-in"></span></a>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    </div>
 
-      <p class="text-right">Es werden {{resultedCases.length}} Cases angezeigt</p>
+    <div class="row"> <!-- 2nd row -->
+
+      <div class="table-responsive col-md-12">
+
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Business ID</th>
+            <th>Case</th>
+            <th>Technical ID</th>
+            <th>Priority</th>
+            <th>Created</th>
+            <th>Last Edited</th>
+            <th>Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr
+            ng-repeat="case in resultedCases = (casesOverviewArrayContainer.casesList | orderBy: casesOrderCondition.predicate : casesOrderCondition.reverse | filter : {caseDefinition : selectedCaseDefinition.key} : true | filter : searchText)">
+            <td>{{case.businessKey}}</td>
+            <td>{{case.caseDefinition}}</td>
+            <td>{{case.id}}</td>
+            <td>{{case.priority}}</td>
+            <td><span ng-if="case.createByAsString">{{case.createByAsString}} am {{case.createDateAsString}}</span></td>
+            <td><span ng-if="case.updateByAsString">{{case.updateByAsString}} am {{case.updateDateAsString}}</span></td>
+            <td>{{case.state}}</td>
+            <td>
+              <a ng-href="#/casedetails/{{case.id}}"><span class="glyphicon glyphicon-zoom-in"></span></a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+
+        <p class="text-right">{{resultedCases.length}} Cases are displayed</p>
+
+      </div>
 
     </div>
 
