@@ -38,6 +38,12 @@ angular.module('cattlecrewCaseManagementUiApp')
 
     srv._resourceEnabledTasks = $resource(srv._baseUrl + '/history/case-activity-instance?enabled=true&caseActivityType=:type&caseInstanceId=:caseId');
 
+    srv._resourceActiveTasks = $resource(srv._baseUrl + '/history/case-activity-instance?active=true&caseInstanceId=:caseId');
+
+    srv._resourceCompletedTasks = $resource(srv._baseUrl + '/history/case-activity-instance?completed=true&caseInstanceId=:caseId');
+
+    srv._resourceMilestonesHistory = $resource(srv._baseUrl + '/history/case-activity-instance?caseActivityType=milestone&caseInstanceId=:caseId');
+
     srv._resourceNewInstance = $resource(srv._baseUrl + '/case-definition/key/:key/create', {}, {
       create: {method: 'POST'}
     });
@@ -72,6 +78,8 @@ angular.module('cattlecrewCaseManagementUiApp')
     };
 
     srv.getEntireCase = function(caseId) {
+      srv._lastRequestedCaseId = caseId;
+
       // TODO refactor to ...then(...)
       srv._resourceCaseExecutions.get({caseId: caseId}, function (caseExecutions) {
         camundaCacheService.putMilestonesForCase(caseExecutions.filter(srv.isMilestone()), caseId);
@@ -83,15 +91,14 @@ angular.module('cattlecrewCaseManagementUiApp')
       srv.enrichWithActivities(caseId);
       srv.enrichWithDetailsInformation(caseId);
 
-      // TODO impl
-      //var promise1 = srv.enrichForAuditTrail(caseId);
-      //var promise2 = srv.enrichWithMilestonesAuditInformation(caseId);
-      //
-      //$q.all([promise1, promise2]).then(function(result) {
-      //  camundaCacheService.clearAuditTrail(caseId);
-      //  camundaCacheService.putAuditInformationForCase(result[0], caseId);
-      //  camundaCacheService.putMilestoneAuditInformationForCase(result[1], caseId);
-      //});
+      var promise1 = srv.enrichForAuditTrail(caseId);
+      var promise2 = srv.enrichWithMilestonesAuditInformation(caseId);
+
+      $q.all([promise1, promise2]).then(function(result) {
+        camundaCacheService.clearAuditTrail(caseId);
+        camundaCacheService.putAuditInformationForCase(result[0], caseId);
+        camundaCacheService.putMilestoneAuditInformationForCase(result[1], caseId);
+      });
     };
 
     srv.enrichWithActivities = function(caseId) {
@@ -109,6 +116,28 @@ angular.module('cattlecrewCaseManagementUiApp')
       });
     };
 
+     srv.enrichForAuditTrail = function(caseId) {
+      var activeTasksResult = srv._resourceActiveTasks.get({caseId: caseId}).$promise;
+      var completedTasksResult = srv._resourceCompletedTasks.get({caseId: caseId}).$promise;
+
+      return $q(function (resolve) {
+        $q.all([activeTasksResult, completedTasksResult]).then(function(result) {
+          var activityEvent = [];
+
+          result.forEach(function(element) {
+            Array.prototype.push.apply(activityEvent, element.filter(srv.isTask()));
+          });
+
+          //camundaCacheService.putAuditInformationForCase(activityEvent, caseId);
+          resolve(activityEvent);
+        });
+      });
+    };
+
+    srv.enrichWithMilestonesAuditInformation = function(caseId) {
+      return srv._resourceMilestonesHistory.get({caseId: caseId}).$promise;
+    };
+
     srv.enrichWithDetailsInformation = function(caseId) {
       srv._resourceCases.get({caseId: caseId}, function(result) {
         camundaCacheService.putDetailsInformationForCase(result, caseId);
@@ -117,6 +146,12 @@ angular.module('cattlecrewCaseManagementUiApp')
 
     srv.isMilestone = function(execution) {
       return execution.caseActivityType === 'milestone';
+    };
+
+    srv.isTask = function(element) {
+      return element.caseActivityType === 'humanTask' ||
+        element.caseActivityType === 'processTask' ||
+        element.caseActivityType === 'caseTask';
     };
 
     srv.loadChildren = function(caseId) {

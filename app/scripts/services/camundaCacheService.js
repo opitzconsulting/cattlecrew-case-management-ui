@@ -146,6 +146,51 @@ angular.module('cattlecrewCaseManagementUiApp')
       srv._cases[details.id].data.details = srv.createDetailsObject(details);
     };
 
+    srv.clearAuditTrail = function(caseId) {
+      srv.initCaseInCache(caseId);
+      srv._cases[caseId].data.auditTrail = [];
+    };
+
+    srv.putAuditInformationForCase = function(audits, caseId) {
+      srv.initCaseInCache(caseId);
+
+      audits.forEach(function(element) {
+        var objectDisplayName = element.completed ? 'Activity completed: ' : 'Activity started: ';
+
+        srv._cases[caseId].data.auditTrail.push({
+          objectDisplayName: objectDisplayName + element.caseActivityName,
+          type: 'ACTIVITY_EVENT',
+          updatedBy: 'John Doe',
+          updatedDate: new Date(element.createTime)
+        });
+      });
+    };
+
+    srv.putMilestoneAuditInformationForCase = function(milestoneEvents, caseId) {
+      srv.initCaseInCache(caseId);
+
+      milestoneEvents.forEach(function(event) {
+        srv._cases[caseId].data.auditTrail.push(srv.createMilestoneEvent('Milestone created: ' + event.caseActivityName, event.createTime));
+      });
+
+      milestoneEvents.filter(srv.isCompleted()).forEach(function(event) {
+        srv._cases[caseId].data.auditTrail.push(srv.createMilestoneEvent('Milestone completed: ' + event.caseActivityName, event.endTime));
+      });
+    };
+
+    srv.createMilestoneEvent = function(objectDisplayName, time) {
+      return  {
+        objectDisplayName: objectDisplayName,
+        type: 'MILESTONE_EVENT',
+        updatedBy: 'John Doe',
+        updatedDate: new Date(time)
+      };
+    };
+
+    srv.isCompleted = function(event) {
+      return event.completed;
+    };
+
     srv.createDetailsObject = function(element) {
       var caseDefinitionIdElements = element.caseDefinitionId.split(':');
       var caseDefinition = caseDefinitionIdElements.slice(0, -2).join(':');
@@ -244,8 +289,14 @@ angular.module('cattlecrewCaseManagementUiApp')
       putDetailsInformationForCase: function(details) {
         srv.putDetailsInformationForCase(details);
       },
-      putCaseDefinitionsInCache: function(caseDefinitions) {
-        srv.putCaseDefinitionsInCache(caseDefinitions);
+      clearAuditTrail: function(caseId) {
+        srv.clearAuditTrail(caseId);
+      },
+      putAuditInformationForCase: function(audits, caseId) {
+        srv.putAuditInformationForCase(audits, caseId);
+      },
+      putMilestoneAuditInformationForCase: function(milestoneEvents, caseId) {
+        srv.putMilestoneAuditInformationForCase(milestoneEvents, caseId);
       },
       getCaseDefinitionsArrayContainer: function() {
         return srv.getCaseDefinitionsArrayContainer();
