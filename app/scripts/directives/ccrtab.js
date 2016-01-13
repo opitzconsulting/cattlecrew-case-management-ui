@@ -1,4 +1,16 @@
-angular.module('cattlecrewCaseManagementUiApp').directive('ccrtab', function () {
+'use strict';
+
+/**
+ * @ngdoc function
+ * @name cattlecrewCaseManagementUiApp.directices:ccrtab
+ * @description
+ * # ccrtab
+ * Directive of the cattlecrewCaseManagementUiApp
+ */
+angular.module('cattlecrewCaseManagementUiApp')
+  .directive('ccrtab', function() {
+
+  /* jshint ignore:start */
   return {
     restrict: 'A',
     link: function (scope, element, attrs) {
@@ -7,5 +19,7 @@ angular.module('cattlecrewCaseManagementUiApp').directive('ccrtab', function () 
                     $(element).tab('show');
                 });
     }
-  }
+  };
+  /* jshint ignore:end */
+
 });
