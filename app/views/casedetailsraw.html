@@ -1,0 +1,83 @@
+<div class="jumbotron">
+  <h1>Raw data</h1>
+
+  <p class="lead">
+    Raw data to selected case
+  </p>
+</div>
+
+<div class="row marketing">
+
+  <p>This is the case raw data view for case with id <kbd>{{case.data.details.id}}</kbd></p>
+
+  <ul class="nav nav-tabs">
+    <li><a ng-href="#/casedetails/{{case.data.details.id}}">Details</a></li>
+    <li><a ng-href="#/cmmn/{{case.data.details.id}}">Rendered CMMN</a></li>
+    <li><a ng-href="#/dmnhistory/{{case.data.details.id}}">DMN History</a></li>
+    <li class="active"><a ng-href="#/casedetailsraw/{{case.data.details.id}}">Raw data</a></li>
+  </ul>
+
+  <div class="col-md-12 top-buffer">
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Details</h4>
+        <pre>{{case.data.details | json}}</pre>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Milestones</h4>
+        <pre>{{case.data.milestones | json}}</pre>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Activities</h4>
+        <pre>{{case.data.activities | json}}</pre>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Children</h4>
+        <pre>{{case.data.children | json}}</pre>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Parent</h4>
+        <pre>{{case.data.parent | json}}</pre>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>AuditTrail</h4>
+        <pre>{{case.data.auditTrail | json}}</pre>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Comments</h4>
+        <pre>{{case.data.comments | json}}</pre>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Documents</h4>
+        <pre>{{case.data.documents | json}}</pre>
+      </li>
+    </ul>
+
+  </div>
+
+</div>
+
+
+

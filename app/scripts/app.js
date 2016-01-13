@@ -40,8 +40,20 @@ angular
         controller: 'CaseDetailsCtrl',
         controllerAs: 'casedetails'
       })
-      .when('/cmmn', {
-        templateUrl: 'views/cmmn.html'
+      .when('/cmmn/:caseId', {
+        templateUrl: 'views/cmmn.html',
+        controller: 'CmmnCtrl',
+        controllerAs: 'cmmn'
+      })
+      .when('/casedetailsraw/:caseId', {
+        templateUrl: 'views/casedetailsraw.html',
+        controller: 'CasedetailsrawCtrl',
+        controllerAs: 'casedetailsraw'
+      })
+      .when('/dmnhistory/:caseId', {
+        templateUrl: 'views/dmnhistory.html',
+        controller: 'DmnhistoryCtrl',
+        controllerAs: 'dmnhistory'
       })
       .otherwise({
         redirectTo: '/'

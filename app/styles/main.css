@@ -61,6 +61,9 @@ body {
 .marketing p + h4 {
   margin-top: 28px;
 }
+.top-buffer {
+  margin-top:20px;
+}
 
 /* CMMN rendering style */
 .djs-container .highlight .djs-outline {

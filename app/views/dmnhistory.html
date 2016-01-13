@@ -1,19 +1,19 @@
 <div class="jumbotron">
-  <h1>Case details</h1>
+  <h1>DMN History</h1>
 
   <p class="lead">
-    Details to selected case
+    History about decisions made
   </p>
 </div>
 
 <div class="row marketing">
 
-  <p>This is the case details view for case with id <kbd>{{case.data.details.id}}</kbd></p>
+  <p>This is the DMN history view for case with id <kbd>{{case.data.details.id}}</kbd></p>
 
   <ul class="nav nav-tabs">
-    <li class="active"><a ng-href="#/casedetails/{{case.data.details.id}}">Details</a></li>
+    <li><a ng-href="#/casedetails/{{case.data.details.id}}">Details</a></li>
     <li><a ng-href="#/cmmn/{{case.data.details.id}}">Rendered CMMN</a></li>
-    <li><a ng-href="#/dmnhistory/{{case.data.details.id}}">DMN History</a></li>
+    <li class="active"><a ng-href="#/dmnhistory/{{case.data.details.id}}">DMN History</a></li>
     <li><a ng-href="#/casedetailsraw/{{case.data.details.id}}">Raw data</a></li>
   </ul>
 

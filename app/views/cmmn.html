@@ -8,9 +8,16 @@
 
 <div class="row marketing">
 
-  <h1>CMMN</h1>
+  <p>This is the rendered CMMN view for case with id <kbd>{{case.data.details.id}}</kbd></p>
 
-  <div>
+  <ul class="nav nav-tabs">
+    <li><a ng-href="#/casedetails/{{case.data.details.id}}">Details</a></li>
+    <li class="active"><a ng-href="#/cmmn/{{case.data.details.id}}">Rendered CMMN</a></li>
+    <li><a ng-href="#/dmnhistory/{{case.data.details.id}}">DMN History</a></li>
+    <li><a ng-href="#/casedetailsraw/{{case.data.details.id}}">Raw data</a></li>
+  </ul>
+
+  <div class="col-md-12 top-buffer">
 
     <section id="cmmn" class="group">
 
