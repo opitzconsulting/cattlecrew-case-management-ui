@@ -8,7 +8,7 @@
  * Factory in the cattlecrewCaseManagementUiApp.
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .factory('camundaActivityService', function ( $resource, camundaConstantsService) {
+  .factory('camundaActivityService', function ($resource, camundaConstantsService) {
     //
     // local namespace
     //
