@@ -30,19 +30,41 @@ angular.module('cattlecrewCaseManagementUiApp')
 
     srv._resourceLastAction = $resource(srv._baseUrl + '/history/user-operation?sortBy=timestamp&sortOrder=desc&maxResults=1&caseInstanceId=:caseId');
 
-    srv._resourceCaseExecutions = $resource(srv._baseUrl + '/history/case-activity-instance?caseInstanceId=:caseId');
+    srv._resourceCaseExecutions = $resource(srv._baseUrl + '/history/case-activity-instance?caseInstanceId=:caseId', {}, {
+      get: {method: 'GET', isArray: true}
+    });
 
     srv._resourceChildren = $resource(srv._baseUrl + '/history/case-instance?superCaseInstanceId=:caseId');
 
     srv._resourceParent = $resource(srv._baseUrl + '/history/case-instance?subCaseInstanceId=:caseId');
 
-    srv._resourceEnabledTasks = $resource(srv._baseUrl + '/history/case-activity-instance?enabled=true&caseActivityType=:type&caseInstanceId=:caseId');
+    srv._resourceEnabledTasks = $resource(srv._baseUrl + '/history/case-activity-instance?enabled=true&caseActivityType=:type&caseInstanceId=:caseId', {}, {
+      get: {method: 'GET', isArray: true}
+    });
 
-    srv._resourceActiveTasks = $resource(srv._baseUrl + '/history/case-activity-instance?active=true&caseInstanceId=:caseId');
+    srv._resourceActiveTasks = $resource(srv._baseUrl + '/history/case-activity-instance?active=true&caseInstanceId=:caseId', {}, {
+      get: {method: 'GET', isArray: true}
+    });
 
-    srv._resourceCompletedTasks = $resource(srv._baseUrl + '/history/case-activity-instance?completed=true&caseInstanceId=:caseId');
+    srv._resourceCompletedTasks = $resource(srv._baseUrl + '/history/case-activity-instance?completed=true&caseInstanceId=:caseId', {}, {
+      get: {method: 'GET', isArray: true}
+    });
 
-    srv._resourceMilestonesHistory = $resource(srv._baseUrl + '/history/case-activity-instance?caseActivityType=milestone&caseInstanceId=:caseId');
+    srv._resourceMilestonesHistory = $resource(srv._baseUrl + '/history/case-activity-instance?caseActivityType=milestone&caseInstanceId=:caseId', {}, {
+      get: {method: 'GET', isArray: true}
+    });
+
+    srv._resourceActivity = $resource(srv._baseUrl + '/case-execution/:activityID/manual-start', {}, {
+      activate: {method: 'POST', isArray: true}
+    });
+
+    srv._resourceChildren = $resource(srv._baseUrl + '/history/case-instance?superCaseInstanceId=:caseID', {}, {
+      get: {method: 'GET', isArray: true}
+    });
+
+    srv._resourceParent = $resource(srv._baseUrl + '/history/case-instance?subCaseInstanceId=:caseID', {}, {
+      get: {method: 'GET', isArray: true}
+    });
 
     srv._resourceNewInstance = $resource(srv._baseUrl + '/case-definition/key/:key/create', {}, {
       create: {method: 'POST'}
@@ -80,9 +102,8 @@ angular.module('cattlecrewCaseManagementUiApp')
     srv.getEntireCase = function(caseId) {
       srv._lastRequestedCaseId = caseId;
 
-      // TODO refactor to ...then(...)
       srv._resourceCaseExecutions.get({caseId: caseId}, function (caseExecutions) {
-        camundaCacheService.putMilestonesForCase(caseExecutions.filter(srv.isMilestone()), caseId);
+        camundaCacheService.putMilestonesForCase(caseExecutions.filter(srv.isMilestone), caseId);
       });
 
       srv.loadChildren(caseId);
@@ -120,12 +141,12 @@ angular.module('cattlecrewCaseManagementUiApp')
       var activeTasksResult = srv._resourceActiveTasks.get({caseId: caseId}).$promise;
       var completedTasksResult = srv._resourceCompletedTasks.get({caseId: caseId}).$promise;
 
-      return $q(function (resolve) {
+      return $q(function(resolve) {
         $q.all([activeTasksResult, completedTasksResult]).then(function(result) {
           var activityEvent = [];
 
           result.forEach(function(element) {
-            Array.prototype.push.apply(activityEvent, element.filter(srv.isTask()));
+            Array.prototype.push.apply(activityEvent, element.filter(srv.isTask));
           });
 
           //camundaCacheService.putAuditInformationForCase(activityEvent, caseId);
