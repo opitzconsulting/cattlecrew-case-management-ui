@@ -40,6 +40,9 @@ angular
         controller: 'CaseDetailsCtrl',
         controllerAs: 'casedetails'
       })
+      .when('/cmmn', {
+        templateUrl: 'views/cmmn.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
