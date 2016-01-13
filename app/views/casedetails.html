@@ -8,19 +8,60 @@
 
 <div class="row marketing">
 
-  <p>This is the casedetails view for case with id</p>
+  <p>This is the casedetails view for case with id <kbd>{{case.data.details.id}}</kbd></p>
 
-  <h2 ng-bind="case.id"></h2>
+  <a ng-click="goToListView()" href="">Back to dashboard</a>
 
-  <ul>
-    <li ng-bind-template="businessKey: {{case.businessKey}}"></li>
-    <li ng-bind-template="caseDefinitionId: {{case.caseDefinitionId}}"></li>
-    <li ng-bind-template="active: {{case.active}}"></li>
-    <li ng-bind-template="completed: {{case.completed}}"></li>
-    <li ng-bind-template="terminated: {{case.terminated}}"></li>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4>Details</h4>
+      <pre>{{case.data.details | json}}</pre>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4>Milestones</h4>
+      <pre>{{case.data.milestones | json}}</pre>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4>Activities</h4>
+      <pre>{{case.data.activities | json}}</pre>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4>Children</h4>
+      <pre>{{case.data.children | json}}</pre>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4>Parent</h4>
+      <pre>{{case.data.parent | json}}</pre>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4>AuditTrail</h4>
+      <pre>{{case.data.auditTrail | json}}</pre>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4>Comments</h4>
+      <pre>{{case.data.comments | json}}</pre>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <h4>Documents</h4>
+      <pre>{{case.data.documents | json}}</pre>
+    </li>
   </ul>
 
-  <a ng-click="goToListView()" href="">Zurück zur Übersicht</a>
+  <a ng-click="goToListView()" href="">Back to dashboard</a>
 
 </div>
 
