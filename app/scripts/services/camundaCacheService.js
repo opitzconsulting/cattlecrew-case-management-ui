@@ -173,7 +173,7 @@ angular.module('cattlecrewCaseManagementUiApp')
         srv._cases[caseId].data.auditTrail.push(srv.createMilestoneEvent('Milestone created: ' + event.caseActivityName, event.createTime));
       });
 
-      milestoneEvents.filter(srv.isCompleted()).forEach(function(event) {
+      milestoneEvents.filter(srv.isCompleted).forEach(function(event) {
         srv._cases[caseId].data.auditTrail.push(srv.createMilestoneEvent('Milestone completed: ' + event.caseActivityName, event.endTime));
       });
     };
@@ -297,6 +297,9 @@ angular.module('cattlecrewCaseManagementUiApp')
       },
       putMilestoneAuditInformationForCase: function(milestoneEvents, caseId) {
         srv.putMilestoneAuditInformationForCase(milestoneEvents, caseId);
+      },
+      putCaseDefinitionsInCache: function(caseDefinitions) {
+        srv.putCaseDefinitionsInCache(caseDefinitions);
       },
       getCaseDefinitionsArrayContainer: function() {
         return srv.getCaseDefinitionsArrayContainer();
