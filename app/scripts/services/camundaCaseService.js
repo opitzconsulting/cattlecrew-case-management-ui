@@ -54,7 +54,7 @@ angular.module('cattlecrewCaseManagementUiApp')
       get: {method: 'GET', isArray: true}
     });
 
-    srv._resourceActivity = $resource(srv._baseUrl + '/case-execution/:activityID/manual-start', {}, {
+    srv._resourceActivity = $resource(srv._baseUrl + '/case-execution/:activityId/manual-start', {}, {
       activate: {method: 'POST', isArray: true}
     });
 
@@ -229,6 +229,14 @@ angular.module('cattlecrewCaseManagementUiApp')
       });
     };
 
+    srv.startActivity = function(caseId, activityDefinitionId) {
+      srv._resourceActivity.activate({activityId: activityDefinitionId}, {}, function(result) {
+        console.log('New activity started: ' + result);
+      }, function(error) {
+        console.log('Error occurred during starting a new activity: ' + error);
+      });
+    };
+
     //
     // Public API
     //
@@ -250,6 +258,9 @@ angular.module('cattlecrewCaseManagementUiApp')
       },
       createCaseInstance: function(key, requestData) {
         srv.createCaseInstance(key, requestData);
+      },
+      startActivity: function(caseId, activityDefinitionId) {
+        srv.startActivity(caseId, activityDefinitionId);
       }
     };
   });

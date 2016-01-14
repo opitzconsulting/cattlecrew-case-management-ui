@@ -25,10 +25,13 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            Search
+            <h4>Search</h4>
           </div>
           <div class="panel panel-body">
-            Panel Body 1
+            <div>
+              <strong>Panel Body 1</strong><br>
+              bla bla bla<br>
+            </div>
           </div>
         </div>
 
@@ -38,10 +41,33 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            Claim Details
+            <h4>Claim Details</h4>
           </div>
           <div class="panel panel-body">
-            Panel Body 2
+            <div>
+              <strong>Title</strong><br>
+              {{case.data.details.caseDefinition}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong class="top-buffer">state</strong><br>
+              {{case.data.details.state}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong>Technical ID</strong><br>
+              {{case.data.details.id}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong>Priority</strong><br>
+              {{case.data.details.priority}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong>Created</strong><br>
+              {{case.data.details.createByAsString}} at {{case.data.details.createDateAsString}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong>Last Edited</strong><br>
+              {{case.data.details.updateByAsString}} at {{case.data.details.updateDateAsString}}<br>
+            </div>
           </div>
         </div>
 
@@ -51,10 +77,17 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            Audit trail <span class="badge pull-right">{{case.data.auditTrail.length}}</span>
+            <h4>Audit trail<span class="badge pull-right">{{case.data.auditTrail.length}}</span></h4>
           </div>
           <div class="panel panel-body">
-            Panel Body 3
+            <table class="table table-hover">
+              <tbody>
+              <tr ng-repeat="auditTrail in resultedAuditTrails = (case.data.auditTrail | orderBy: auditTrail.updatedDate : true)">
+                <td>{{auditTrail.objectDisplayName}}</td>
+                <td>{{auditTrail.updatedBy}} at {{auditTrail.updatedDateAsString}}</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -64,10 +97,21 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            Available case activities <span class="badge pull-right">{{case.data.activities.length}}</span>
+            <h4>Available case activities <span class="badge pull-right">{{case.data.activities.length}}</span></h4>
           </div>
           <div class="panel panel-body">
-            Panel Body 4
+            <table class="table table-hover">
+              <tbody>
+              <tr ng-repeat="activity in resultedActivities = (case.data.activities | orderBy: activity.displayName : false)">
+                <td>
+                  <a href ng-click="startActivity(activity)">{{activity.displayName}}</a>
+                </td>
+                <td ng-show="activity.isRepeatable == true"><span class="glyphicon glyphicon-repeat"></span></td>
+                <td ng-show="activity.isRequired == true"><span class="glyphicon glyphicon-exclamation-sign"></span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 

@@ -159,7 +159,8 @@ angular.module('cattlecrewCaseManagementUiApp')
           objectDisplayName: objectDisplayName + element.caseActivityName,
           type: 'ACTIVITY_EVENT',
           updatedBy: 'John Doe',
-          updatedDate: new Date(element.createTime)
+          updatedDate: new Date(element.createTime),
+          updatedDateAsString: srv.formatIsoDateString(element.createTime)
         });
       });
     };
@@ -181,7 +182,8 @@ angular.module('cattlecrewCaseManagementUiApp')
         objectDisplayName: objectDisplayName,
         type: 'MILESTONE_EVENT',
         updatedBy: 'John Doe',
-        updatedDate: new Date(time)
+        updatedDate: new Date(time),
+        updatedDateAsString: srv.formatIsoDateString(time)
       };
     };
 

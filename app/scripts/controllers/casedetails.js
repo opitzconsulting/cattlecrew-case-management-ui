@@ -22,4 +22,9 @@ angular.module('cattlecrewCaseManagementUiApp')
 
     $scope.initView($routeParams.caseId);
 
+    $scope.startActivity = function(selectedActivity) {
+      console.log(selectedActivity);
+      caseService.startActivity(selectedActivity.caseId, selectedActivity.definitionId);
+    };
+
     });

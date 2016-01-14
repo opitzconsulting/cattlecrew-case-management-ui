@@ -36,8 +36,8 @@ angular.module('cattlecrewCaseManagementUiApp')
       return srv._cache.getCase(caseId);
     };
 
-    srv.startActivity = function(caseId, activityDefinitionId, startActivityComment) {
-      return srv._caseService.startActivity(caseId, activityDefinitionId, startActivityComment);
+    srv.startActivity = function(caseId, activityDefinitionId) {
+      return srv._caseService.startActivity(caseId, activityDefinitionId);
     };
 
     srv.startPolling = function(caseId) {
