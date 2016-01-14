@@ -36,6 +36,11 @@ angular.module('cattlecrewCaseManagementUiApp')
     };
 
     $scope.createCaseInstance = function(key) {
+      console.log($scope.requestData.variables);
+      if($scope.requestData.variables['priority'].value === null){
+        delete $scope.requestData.variables['priority'];
+        console.log($scope.requestData.variables);
+      }
       caseService.createCaseInstance(key, $scope.requestData);
     };
 
