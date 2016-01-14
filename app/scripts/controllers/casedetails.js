@@ -8,7 +8,7 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('CaseDetailsCtrl', function ($scope, $location, $routeParams, caseService, tabbingService) {
+  .controller('CaseDetailsCtrl', function ($scope, $location, $routeParams, caseService, tabbingService, $window) {
 
     $scope.initView = function(caseId) {
 
@@ -26,5 +26,9 @@ angular.module('cattlecrewCaseManagementUiApp')
       console.log(selectedActivity);
       caseService.startActivity(selectedActivity.caseId, selectedActivity.definitionId);
     };
+
+    $scope.openURL = function(url) {
+      $window.open(url);
+    }
 
     });

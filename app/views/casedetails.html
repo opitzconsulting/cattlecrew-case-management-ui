@@ -132,7 +132,16 @@
             Documents <span class="badge pull-right">{{case.data.documents.length}}</span>
           </div>
           <div class="panel panel-body">
-            Panel Body 5
+            <table class="table table-hover">
+              <tbody>
+              <tr ng-repeat="document in resultedDocuments = (case.data.documents | orderBy: document.documentName : false)">
+                <td><span class="glyphicon glyphicon-eye-open"></span></td>
+                <td>
+                  <a href ng-click="openURL(document.documentLink)">{{document.documentName}}</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 

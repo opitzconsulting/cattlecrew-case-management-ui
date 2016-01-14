@@ -39,10 +39,12 @@ angular.module('cattlecrewCaseManagementUiApp')
         comments: null,
         documents: [
           {
-            documentName: 'claimfile.pdf'
+            documentName: 'claimfile.pdf',
+            documentLink: 'assets/claimfile.pdf'
           },
           {
-            documentName: 'casedocument.pdf'
+            documentName: 'casedocument.pdf',
+            documentLink: 'assets/casedocument.pdf'
           }
         ]
       }
