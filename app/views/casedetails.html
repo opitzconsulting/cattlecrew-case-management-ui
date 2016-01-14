@@ -129,7 +129,7 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            Documents <span class="badge pull-right">{{case.data.documents.length}}</span>
+            <h4>Documents <span class="badge pull-right">{{case.data.documents.length}}</span></h4>
           </div>
           <div class="panel panel-body">
             <table class="table table-hover">
@@ -151,7 +151,7 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            Panel Header 6
+            <h4>Panel Header 6</h4>
           </div>
           <div class="panel panel-body">
             Panel Body 6
@@ -164,7 +164,7 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            What happened so far <span class="badge pull-right">{{case.data.milestones.length}}</span>
+            <h4>What happened so far <span class="badge pull-right">{{case.data.milestones.length}}</span></h4>
           </div>
           <div class="panel panel-body">
             Panel Body 7
@@ -177,19 +177,35 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            Case history <span class="badge pull-right">{{case.data.auditTrail.length}}</span>
+            <h4>Case history <span class="badge pull-right">{{case.data.auditTrail.length}}</span></h4>
           </div>
           <div class="panel panel-body">
-            Panel Body 8
+            <table class="table table-hover">
+              <tbody>
+              <!-- startedActivity -->
+              <tr ng-repeat="startedActivity in resultedStartedActivities = (case.data.auditTrail | filter: startedActivity.type === 'ACTIVITY_EVENT' | filter: startedActivity.objectDisplayName.indexOf('Activity started') > -1 | limitTo:10)">
+                <td><span class="glyphicon glyphicon-eye-open"></span></td>
+                <td>{{startedActivity.objectDisplayName}}</td>
+              </tr>
+
+              <!--Activity terminated-->
+              <tr ng-repeat="terminatedActivity in resultedStartedActivities = (case.data.auditTrail | filter: terminatedActivity.type == 'ACTIVITY_EVENT' | filter: terminatedActivity.objectDisplayName.indexOf('Activity completed') > -1 | limitTo:10)">
+                <td><span class="glyphicon glyphicon-eye-open"></span></td>
+                <td>{{terminatedActivity.objectDisplayName}}</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
         <div class="panel panel-default top-buffer">
           <div class="panel panel-heading">
-            Future activities <span class="badge pull-right">0</span>
+            <h4>Future activities <span class="badge pull-right">0</span></h4>
           </div>
           <div class="panel panel-body">
-            Panel Body 9
+            <div>
+              ---<br>
+            </div>
           </div>
         </div>
 
