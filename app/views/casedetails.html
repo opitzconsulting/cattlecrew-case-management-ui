@@ -17,7 +17,7 @@
     <li><a ng-href="#/casedetailsraw/{{case.data.details.id}}">Raw data</a></li>
   </ul>
 
-  <div class="row top-buffer"> <!-- 1st row -->
+  <div class="row top-buffer">
 
     <div class="panel-group">
 
@@ -42,11 +42,11 @@
           <div class="panel panel-body">
             <table class="table table-hover">
               <tbody>
-              <tr ng-repeat="document in resultedDocuments = (case.data.documents | orderBy: document.documentName : false)">
+              <tr
+                ng-repeat="document in resultedDocuments = (case.data.documents | orderBy: document.documentName : false)">
                 <td><span class="glyphicon glyphicon-eye-open"></span></td>
                 <td>
                   <a href ng-click="openURL(document.documentLink)">{{document.documentName}}</a>
-                </td>
               </tr>
               </tbody>
             </table>
@@ -74,7 +74,7 @@
               <strong>Technical ID</strong><br>
               {{case.data.details.id}}<br>
             </div>
-            <div class="top-buffer">
+            <div class="top-buffer" ng-show="case.data.details.priority">
               <strong>Priority</strong><br>
               {{case.data.details.priority}}<br>
             </div>
@@ -82,7 +82,7 @@
               <strong>Created</strong><br>
               {{case.data.details.createByAsString}} at {{case.data.details.createDateAsString}}<br>
             </div>
-            <div class="top-buffer">
+            <div class="top-buffer" ng-show="case.data.details.updateDateAsString">
               <strong>Last Edited</strong><br>
               {{case.data.details.updateByAsString}} at {{case.data.details.updateDateAsString}}<br>
             </div>
@@ -109,7 +109,8 @@
           <div class="panel panel-body">
             <table class="table table-hover">
               <tbody>
-              <tr ng-repeat="auditTrail in resultedAuditTrails = (case.data.auditTrail | orderBy: auditTrail.updatedDate : true)">
+              <tr
+                ng-repeat="auditTrail in resultedAuditTrails = (case.data.auditTrail | orderBy: auditTrail.updatedDate : true)">
                 <td>{{auditTrail.objectDisplayName}}</td>
                 <td>{{auditTrail.updatedBy}} at {{auditTrail.updatedDateAsString}}</td>
               </tr>
@@ -123,7 +124,19 @@
             <h4>What happened so far <span class="badge pull-right">{{case.data.milestones.length}}</span></h4>
           </div>
           <div class="panel panel-body">
-            Panel Body 7
+            <ul class="timeline" ng-repeat="milestone in resultedMilestones = (case.data.milestones | orderBy: 'state')">
+              <li ng-class="$odd ? 'timeline-inverted' : 'timeline'">
+                <div class="timeline-badge warning">
+                  <div ng-show="milestone.state == 'ATTAINED'" class="glyphicon glyphicon-ok"></div>
+                  <div ng-show="milestone.state == 'NOT_ATTAINED'" class="glyphicon glyphicon-time"></div>
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4 class="timeline-title">{{milestone.objectDisplayName}}</h4>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -139,6 +152,7 @@
             <table class="table table-hover">
               <tbody>
               <tr ng-repeat="activity in resultedActivities = (case.data.activities | orderBy: activity.displayName : false)">
+                <td><span class="glyphicon glyphicon-play"></span></td>
                 <td>
                   <a href ng-click="startActivity(activity)">{{activity.displayName}}</a>
                 </td>
@@ -153,19 +167,20 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            <h4>Case history <span class="badge pull-right">{{case.data.auditTrail.length}}</span></h4>
+            <h4>Case history <span class="badge pull-right">{{resultedStartedActivities.length + resultedTerminatedActivities.length}}</span>
+            </h4>
           </div>
           <div class="panel panel-body">
             <table class="table table-hover">
               <tbody>
-              <!-- startedActivity -->
-              <tr ng-repeat="startedActivity in resultedStartedActivities = (case.data.auditTrail | filter: startedActivity.type === 'ACTIVITY_EVENT' | filter: startedActivity.objectDisplayName.indexOf('Activity started') > -1 | limitTo:10)">
-                <td><span class="glyphicon glyphicon-eye-open"></span></td>
+              <!-- Started Activity -->
+              <tr ng-repeat="startedActivity in resultedStartedActivities = (case.data.auditTrail | filter : {type : 'ACTIVITY_EVENT'} : false | filter : {objectDisplayName : 'Activity started'} | limitTo:10)">
+                <td><span class="glyphicon glyphicon-transfer"></span></td>
                 <td>{{startedActivity.objectDisplayName}}</td>
               </tr>
-              <!--Activity terminated-->
-              <tr ng-repeat="terminatedActivity in resultedStartedActivities = (case.data.auditTrail | filter: terminatedActivity.type == 'ACTIVITY_EVENT' | filter: terminatedActivity.objectDisplayName.indexOf('Activity completed') > -1 | limitTo:10)">
-                <td><span class="glyphicon glyphicon-eye-open"></span></td>
+              <!-- Terminated Activity -->
+              <tr ng-repeat="terminatedActivity in resultedTerminatedActivities = (case.data.auditTrail | filter : {type : 'ACTIVITY_EVENT'} : false | filter : {objectDisplayName : 'Activity completed'} | limitTo:10)">
+                <td><span class="glyphicon glyphicon-ok"></span></td>
                 <td>{{terminatedActivity.objectDisplayName}}</td>
               </tr>
               </tbody>
