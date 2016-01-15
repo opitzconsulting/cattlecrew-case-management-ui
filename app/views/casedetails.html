@@ -35,6 +35,24 @@
           </div>
         </div>
 
+        <div class="panel panel-default">
+          <div class="panel panel-heading">
+            <h4>Documents <span class="badge pull-right">{{case.data.documents.length}}</span></h4>
+          </div>
+          <div class="panel panel-body">
+            <table class="table table-hover">
+              <tbody>
+              <tr ng-repeat="document in resultedDocuments = (case.data.documents | orderBy: document.documentName : false)">
+                <td><span class="glyphicon glyphicon-eye-open"></span></td>
+                <td>
+                  <a href ng-click="openURL(document.documentLink)">{{document.documentName}}</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
       </div>
 
       <div class="col-md-3">
@@ -71,6 +89,15 @@
           </div>
         </div>
 
+        <div class="panel panel-default">
+          <div class="panel panel-heading">
+            <h4>Panel Header 6</h4>
+          </div>
+          <div class="panel panel-body">
+            Panel Body 6
+          </div>
+        </div>
+
       </div>
 
       <div class="col-md-3">
@@ -88,6 +115,15 @@
               </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel panel-heading">
+            <h4>What happened so far <span class="badge pull-right">{{case.data.milestones.length}}</span></h4>
+          </div>
+          <div class="panel panel-body">
+            Panel Body 7
           </div>
         </div>
 
@@ -115,66 +151,6 @@
           </div>
         </div>
 
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="row top-buffer"> <!-- 2nd row -->
-
-    <div class="panel-group">
-
-      <div class="col-lg-3">
-
-        <div class="panel panel-default">
-          <div class="panel panel-heading">
-            <h4>Documents <span class="badge pull-right">{{case.data.documents.length}}</span></h4>
-          </div>
-          <div class="panel panel-body">
-            <table class="table table-hover">
-              <tbody>
-              <tr ng-repeat="document in resultedDocuments = (case.data.documents | orderBy: document.documentName : false)">
-                <td><span class="glyphicon glyphicon-eye-open"></span></td>
-                <td>
-                  <a href ng-click="openURL(document.documentLink)">{{document.documentName}}</a>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-lg-3">
-
-        <div class="panel panel-default">
-          <div class="panel panel-heading">
-            <h4>Panel Header 6</h4>
-          </div>
-          <div class="panel panel-body">
-            Panel Body 6
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-lg-3">
-
-        <div class="panel panel-default">
-          <div class="panel panel-heading">
-            <h4>What happened so far <span class="badge pull-right">{{case.data.milestones.length}}</span></h4>
-          </div>
-          <div class="panel panel-body">
-            Panel Body 7
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-lg-3">
-
         <div class="panel panel-default">
           <div class="panel panel-heading">
             <h4>Case history <span class="badge pull-right">{{case.data.auditTrail.length}}</span></h4>
@@ -187,7 +163,6 @@
                 <td><span class="glyphicon glyphicon-eye-open"></span></td>
                 <td>{{startedActivity.objectDisplayName}}</td>
               </tr>
-
               <!--Activity terminated-->
               <tr ng-repeat="terminatedActivity in resultedStartedActivities = (case.data.auditTrail | filter: terminatedActivity.type == 'ACTIVITY_EVENT' | filter: terminatedActivity.objectDisplayName.indexOf('Activity completed') > -1 | limitTo:10)">
                 <td><span class="glyphicon glyphicon-eye-open"></span></td>
