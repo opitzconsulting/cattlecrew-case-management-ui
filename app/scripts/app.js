@@ -41,8 +41,8 @@ angular
         controllerAs: 'casedetails'
       })
       .when('/cmmn/:caseId', {
-        templateUrl: 'views/cmmn.html',
-        controller: 'CmmnCtrl',
+        templateUrl: 'views/cmmnrender.html',
+        controller: 'CmmnRenderCtrl',
         controllerAs: 'cmmn'
       })
       .when('/casedetailsraw/:caseId', {

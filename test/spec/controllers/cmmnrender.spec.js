@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: CmmnCtrl', function () {
+describe('Controller: CmmnRenderCtrl', function () {
 
   // load the controller's module
   beforeEach(module('cattlecrewCaseManagementUiApp'));
 
-  var CmmnCtrl,
+  var CmmnRenderCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    CmmnCtrl = $controller('CmmnCtrl', {
+    CmmnRenderCtrl = $controller('CmmnRenderCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
