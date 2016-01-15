@@ -133,7 +133,9 @@ angular.module('cattlecrewCaseManagementUiApp')
           caseId: activity.caseInstanceId,
           definitionId: activity.id,
           isRepeatable: false,
-          isRequired: false
+          isRequired: activity.required,
+          isAvailable: activity.available,
+          isEnabled: activity.enabled
         });
       });
 
@@ -199,16 +201,16 @@ angular.module('cattlecrewCaseManagementUiApp')
 
       var state;
       if(element.active) {
-        state = 'Aktiv';
+        state = 'Active';
       }
       if(element.completed) {
-        state = 'Abgeschlossen';
+        state = 'Completed';
       }
       if(element.terminated) {
-        state = 'Abgebrochen';
+        state = 'Terminated';
       }
       if(element.closed) {
-        state = 'Gesperrt';
+        state = 'Closed';
       }
 
       return {

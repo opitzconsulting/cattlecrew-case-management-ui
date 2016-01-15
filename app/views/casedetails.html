@@ -63,6 +63,10 @@
           </div>
           <div class="panel panel-body">
             <div>
+              <strong>Business ID</strong><br>
+              {{case.data.details.businessKey}}<br>
+            </div>
+            <div class="top-buffer">
               <strong>Title</strong><br>
               {{case.data.details.caseDefinition}}<br>
             </div>
@@ -156,8 +160,10 @@
                 <td>
                   <a href ng-click="startActivity(activity)">{{activity.displayName}}</a>
                 </td>
-                <td ng-show="activity.isRepeatable == true"><span class="glyphicon glyphicon-repeat"></span></td>
-                <td ng-show="activity.isRequired == true"><span class="glyphicon glyphicon-exclamation-sign"></span>
+                <td ng-show="activity.isRepeatable == true"><span class="glyphicon glyphicon-repeat" title="is Repeatable"></span></td>
+                <td ng-show="activity.isRequired == true"><span class="glyphicon glyphicon-exclamation-sign" title="is Required"></span>
+                <!--<td ng-show="activity.isEnabled == true"><span class="glyphicon glyphicon-thumbs-up" title="is Enabled"></span>-->
+                <!--<td ng-show="activity.isAvailable == true"><span class="glyphicon glyphicon-screenshot" title="is Available"></span>-->
                 </td>
               </tr>
               </tbody>
