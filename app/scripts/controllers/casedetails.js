@@ -29,6 +29,6 @@ angular.module('cattlecrewCaseManagementUiApp')
 
     $scope.openURL = function(url) {
       $window.open(url);
-    }
+    };
 
     });

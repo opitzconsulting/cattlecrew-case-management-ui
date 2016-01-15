@@ -29,7 +29,7 @@ angular.module('cattlecrewCaseManagementUiApp')
             type: 'Integer'
           },
           accountableIdentified: {
-            value: "false",
+            value: false,
             type: 'Boolean'
           },
           claimAmount: {
