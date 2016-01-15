@@ -23,6 +23,18 @@ angular.module('cattlecrewCaseManagementUiApp')
           priority: {
             value: null,
             type: 'String'
+          },
+          partiesInvolved: {
+            value: null,
+            type: 'Integer'
+          },
+          accountableIdentified: {
+            value: "false",
+            type: 'Boolean'
+          },
+          claimAmount: {
+            value: null,
+            type: 'Integer'
           }
         }
       };

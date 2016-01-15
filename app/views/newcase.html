@@ -55,6 +55,21 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="partiesInvolved">Number of parties involved</label>
+              <input type="text" class="form-control" id="partiesInvolved" placeholder="Number of parties involved" ng-model="requestData.variables.partiesInvolved.value" required>
+            </div>
+            <div class="form-group">
+              <label for="accountableIdentified">Accountable identified?</label>
+              <select class="form-control" id="accountableIdentified" ng-model="requestData.variables.accountableIdentified.value" required>
+                <option value="true">yes</option>
+                <option value="false">no</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="claimAmount">Claim amount</label>
+              <input type="text" class="form-control" id="claimAmount" placeholder="Claim amount" ng-model="requestData.variables.claimAmount.value" required>
+            </div>
+            <div class="form-group">
               <button type="submit" class="btn btn-primary btn-lg pull-right" ng-click="createCaseInstance(selectedCaseDefinition.key); goToDashboardView()">Create</button>
               <button type="reset" class="btn btn-primary btn-lg pull-left"value="Reset">Reset</button>
             </div>
