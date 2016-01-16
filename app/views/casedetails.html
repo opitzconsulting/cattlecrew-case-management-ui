@@ -25,13 +25,39 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            <h4>Search</h4>
+            <h4 ng-if="case.data.children.length > 0">Related Childs</h4>
+            <h4 ng-if="case.data.parent.id !== undefined">Related Parent</h4>
           </div>
           <div class="panel panel-body">
-            <div>
-              <strong>Panel Body 1</strong><br>
-              bla bla bla<br>
+            <!-- Search field for childrens-->
+            <div ng-if="case.data.children.length > 0">
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <input id="searchText" type="text" class="form-control" placeholder="Search..." ng-model="searchText">
+                </div>
+                <div class="form-group">
+                  <a class="clear" ng-click="searchText=''"><span class="glyphicon glyphicon-remove"></span></a>
+                </div>
+              </form>
             </div>
+            <table class="table table-hover">
+              <tbody>
+              <!-- Children instances -->
+              <tr ng-if="case.data.children.length > 0" ng-repeat="children in resultedChildrens = (case.data.children | filter : searchText)">
+                <td><span class="glyphicon glyphicon-menu-down"></span></td>
+                <td>
+                  <a href ng-href="#/casedetails/{{children.id}}">{{children.id}}</a>
+                </td>
+              </tr>
+              <!-- Parent instance -->
+              <tr ng-if="case.data.parent.id !== undefined">
+                <td><span class="glyphicon glyphicon-menu-up"></span></td>
+                <td>
+                  <a href ng-href="#/casedetails/{{case.data.parent.id}}">{{case.data.parent.id}}</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -161,10 +187,7 @@
                   <a href ng-click="startActivity(activity)">{{activity.displayName}}</a>
                 </td>
                 <td ng-show="activity.isRepeatable == true"><span class="glyphicon glyphicon-repeat" title="is Repeatable"></span></td>
-                <td ng-show="activity.isRequired == true"><span class="glyphicon glyphicon-exclamation-sign" title="is Required"></span>
-                <!--<td ng-show="activity.isEnabled == true"><span class="glyphicon glyphicon-thumbs-up" title="is Enabled"></span>-->
-                <!--<td ng-show="activity.isAvailable == true"><span class="glyphicon glyphicon-screenshot" title="is Available"></span>-->
-                </td>
+                <td ng-show="activity.isRequired == true"><span class="glyphicon glyphicon-exclamation-sign" title="is Required"></span></td>
               </tr>
               </tbody>
             </table>
