@@ -25,7 +25,7 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            <h4 ng-if="case.data.children.length > 0">Related Childs <span class="badge pull-right">{{case.data.children.length}}</span></h4>
+            <h4 ng-if="case.data.children.length > 0">Related Childrens <span class="badge pull-right">{{case.data.children.length}}</span></h4>
             <h4 ng-if="case.data.parent.id !== undefined">Related Parent <span class="badge pull-right">1</span></h4>
             <h4 ng-if="case.data.parent.id === undefined && case.data.children.length === 0">Related Instances <span class="badge pull-right">0</span></h4>
           </div>
@@ -120,12 +120,39 @@
           </div>
         </div>
 
-        <div class="panel panel-default">
+        <div ng-if="case.data.parent.id !== undefined" class="panel panel-default">
           <div class="panel panel-heading">
-            <h4>Panel Header 6</h4>
+            <h4>Parent Claim Details</h4>
           </div>
           <div class="panel panel-body">
-            Panel Body 6
+            <div>
+              <strong>Business ID</strong><br>
+              {{case.data.parent.businessKey}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong>Title</strong><br>
+              {{case.data.parent.caseDefinition}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong class="top-buffer">state</strong><br>
+              {{case.data.parent.state}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong>Technical ID</strong><br>
+              {{case.data.parent.id}}<br>
+            </div>
+            <div class="top-buffer" ng-show="case.data.details.priority">
+              <strong>Priority</strong><br>
+              {{case.data.parent.priority}}<br>
+            </div>
+            <div class="top-buffer">
+              <strong>Created</strong><br>
+              {{case.data.parent.createByAsString}} at {{case.data.parent.createDateAsString}}<br>
+            </div>
+            <div class="top-buffer" ng-show="case.data.parent.updateDateAsString">
+              <strong>Last Edited</strong><br>
+              {{case.data.parent.updateByAsString}} at {{case.data.parent.updateDateAsString}}<br>
+            </div>
           </div>
         </div>
 
