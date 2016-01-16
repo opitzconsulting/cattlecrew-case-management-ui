@@ -25,8 +25,9 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            <h4 ng-if="case.data.children.length > 0">Related Childs</h4>
-            <h4 ng-if="case.data.parent.id !== undefined">Related Parent</h4>
+            <h4 ng-if="case.data.children.length > 0">Related Childs <span class="badge pull-right">{{case.data.children.length}}</span></h4>
+            <h4 ng-if="case.data.parent.id !== undefined">Related Parent <span class="badge pull-right">1</span></h4>
+            <h4 ng-if="case.data.parent.id === undefined && case.data.children.length === 0">Related Instances <span class="badge pull-right">0</span></h4>
           </div>
           <div class="panel panel-body">
             <!-- Search field for childrens-->
@@ -40,7 +41,7 @@
                 </div>
               </form>
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover top-buffer">
               <tbody>
               <!-- Children instances -->
               <tr ng-if="case.data.children.length > 0" ng-repeat="children in resultedChildrens = (case.data.children | filter : searchText)">
