@@ -25,9 +25,9 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            <h4 ng-if="case.data.children.length > 0">Related Childrens <span class="badge pull-right">{{case.data.children.length}}</span></h4>
-            <h4 ng-if="case.data.parent.id !== undefined">Related Parent <span class="badge pull-right">1</span></h4>
-            <h4 ng-if="case.data.parent.id === undefined && case.data.children.length === 0">Related Instances <span class="badge pull-right">0</span></h4>
+            <h4 ng-if="case.data.children.length > 0">Related childrens <span class="badge pull-right">{{case.data.children.length}}</span></h4>
+            <h4 ng-if="case.data.parent.id !== undefined">Related parent <span class="badge pull-right">1</span></h4>
+            <h4 ng-if="case.data.parent.id === undefined && case.data.children.length === 0">Related instances <span class="badge pull-right">0</span></h4>
           </div>
           <div class="panel panel-body">
             <!-- Search field for childrens-->
@@ -44,10 +44,10 @@
             <table class="table table-hover top-buffer">
               <tbody>
               <!-- Children instances -->
-              <tr ng-if="case.data.children.length > 0" ng-repeat="children in resultedChildrens = (case.data.children | filter : searchText)">
+              <tr ng-if="case.data.children.length > 0" ng-repeat="child in resultedChildren = (case.data.children | filter : searchText)">
                 <td><span class="glyphicon glyphicon-menu-down"></span></td>
                 <td>
-                  <a href ng-href="#/casedetails/{{children.id}}">{{children.id}}</a>
+                  <a href ng-href="#/casedetails/{{child.id}}">{{child.id}}</a>
                 </td>
               </tr>
               <!-- Parent instance -->
@@ -86,7 +86,7 @@
 
         <div class="panel panel-default">
           <div class="panel panel-heading">
-            <h4>Claim Details</h4>
+            <h4>Details</h4>
           </div>
           <div class="panel panel-body">
             <div>
@@ -94,7 +94,7 @@
               {{case.data.details.businessKey}}<br>
             </div>
             <div class="top-buffer">
-              <strong>Title</strong><br>
+              <strong>Case</strong><br>
               {{case.data.details.caseDefinition}}<br>
             </div>
             <div class="top-buffer">
@@ -122,7 +122,7 @@
 
         <div ng-if="case.data.parent.id !== undefined" class="panel panel-default">
           <div class="panel panel-heading">
-            <h4>Parent Claim Details</h4>
+            <h4>Parent details</h4>
           </div>
           <div class="panel panel-body">
             <div>
@@ -130,7 +130,7 @@
               {{case.data.parent.businessKey}}<br>
             </div>
             <div class="top-buffer">
-              <strong>Title</strong><br>
+              <strong>Case</strong><br>
               {{case.data.parent.caseDefinition}}<br>
             </div>
             <div class="top-buffer">
@@ -185,8 +185,8 @@
             <ul class="timeline" ng-repeat="milestone in resultedMilestones = (case.data.milestones | orderBy: 'state')">
               <li ng-class="$odd ? 'timeline-inverted' : 'timeline'">
                 <div class="timeline-badge warning">
-                  <div ng-show="milestone.state == 'ATTAINED'" class="glyphicon glyphicon-ok"></div>
-                  <div ng-show="milestone.state == 'NOT_ATTAINED'" class="glyphicon glyphicon-time"></div>
+                  <div ng-show="milestone.state === 'ATTAINED'" class="glyphicon glyphicon-ok"></div>
+                  <div ng-show="milestone.state === 'NOT_ATTAINED'" class="glyphicon glyphicon-time"></div>
                 </div>
                 <div class="timeline-panel">
                   <div class="timeline-heading">
@@ -214,8 +214,8 @@
                 <td>
                   <a href ng-click="startActivity(activity)">{{activity.displayName}}</a>
                 </td>
-                <td ng-show="activity.isRepeatable == true"><span class="glyphicon glyphicon-repeat" title="is Repeatable"></span></td>
-                <td ng-show="activity.isRequired == true"><span class="glyphicon glyphicon-exclamation-sign" title="is Required"></span></td>
+                <td ng-show="activity.isRepeatable === true"><span class="glyphicon glyphicon-repeat" title="is Repeatable"></span></td>
+                <td ng-show="activity.isRequired === true"><span class="glyphicon glyphicon-exclamation-sign" title="is Required"></span></td>
               </tr>
               </tbody>
             </table>
