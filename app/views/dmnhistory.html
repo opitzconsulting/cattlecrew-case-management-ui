@@ -21,7 +21,7 @@
 
       <div class="col-md-12">
 
-        <div class="panel panel-default"
+        <div class="panel panel-default" ng-if="case.data.decisions[0].decisionInstances.length > 0"
              ng-repeat="process in resultedProcesses = (case.data.decisions | orderBy: process.endTime : true)">
           <div class="panel panel-heading">
             <h4>Decisions in process {{process.processDefinitionKey}} <span class="badge pull-right">{{process.decisionInstances.length}}</span>
