@@ -95,12 +95,16 @@
                     </div>
                   </td>
                   <td> <!-- Decision table -->
+                    <div id="myDiv" style="visibility: visible;">
+                      {{decisionInstance.decisionDefinitionId}}
+                    </div>
                       <div id="dmn-drop-zone">
                         <div id="dmnCanvas"></div>
                       </div>
                       <script> // Decision table script
                         $(document).ready(function() {
-//                          var decisionDefinitionId = $("#decisionDefinitionIdElement").scope().decisionInstance.decisionDefinitionId;
+//                          console.log('--------' + $("#myDiv").scope().decisionInstance.decisionDefinitionId);
+//                          console.log('--------' + angular.element(document.querySelector('#myDiv')).scope().text());
                           $('#dmnCanvas').children().remove(); // remove old tables on reload
                           var restAccess = 'http://localhost:8080/engine-rest';
                           var DmnModeler = window.DmnJS;

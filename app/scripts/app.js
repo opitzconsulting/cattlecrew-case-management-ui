@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider/**, $compileProvider */) {
+    //$compileProvider.debugInfoEnabled(true); TODO testimonial in combination with jquery
     $routeProvider
       .when('/', {
         templateUrl: 'views/dashboard.html',
