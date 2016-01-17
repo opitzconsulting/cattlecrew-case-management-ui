@@ -24,7 +24,7 @@
         <div class="panel panel-default"
              ng-repeat="process in resultedProcesses = (case.data.decisions | orderBy: process.endTime : true)">
           <div class="panel panel-heading">
-            <h4>Process {{process.processDefinitionKey}} <span class="badge pull-right">{{process.decisionInstances.length}}</span>
+            <h4>Decisions in process {{process.processDefinitionKey}} <span class="badge pull-right">{{process.decisionInstances.length}}</span>
             </h4>
           </div>
           <div class="panel panel-body">
@@ -33,14 +33,31 @@
                 <thead>
                 <tr>
                   <th>Activity</th>
-                  <th>Inputs</th>
-                  <th>Outputs</th>
+                  <th>Input</th>
+                  <th>Output</th>
+                  <th>Decision table</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr
-                  ng-repeat="decisionInstance in resultedDecisionInstances = (process.decisionInstances | orderBy: decisionInstance.evaluationTime : true)">
-                  <td>{{decisionInstance.activityId}}</td>
+                <tr ng-repeat="decisionInstance in resultedDecisionInstances = (process.decisionInstances | orderBy: decisionInstance.evaluationTime : true)">
+                  <td> <!-- Details -->
+                    <div>
+                      <strong>Activity TODO</strong><br>
+                      {{decisionInstance.activityId}}<br>
+                    </div>
+                    <div class="top-buffer">
+                      <strong>Decision definition REMOVE</strong><br>
+                      {{decisionInstance.decisionDefinitionId}}<br>
+                    </div>
+                    <div class="top-buffer">
+                      <strong>Evaluation Time</strong><br>
+                      {{decisionInstance.evaluationTime | date : 'dd.MM.yyyy HH:mm'}}<br>
+                    </div>
+                    <div class="top-buffer">
+                      <strong>Decision table version</strong><br>
+                      ---<br>
+                    </div>
+                  </td>
                   <td> <!-- Inputs -->
                     <div class="table-responsive">
                       <table class="table table-bordered table-striped">
@@ -76,6 +93,31 @@
                         </tbody>
                       </table>
                     </div>
+                  </td>
+                  <td> <!-- Decision table -->
+                      <div id="dmn-drop-zone">
+                        <div id="dmnCanvas"></div>
+                      </div>
+                      <script> // Decision table script
+                        $(document).ready(function() {
+//                          var decisionDefinitionId = $("#decisionDefinitionIdElement").scope().decisionInstance.decisionDefinitionId;
+                          $('#dmnCanvas').children().remove(); // remove old tables on reload
+                          var restAccess = 'http://localhost:8080/engine-rest';
+                          var DmnModeler = window.DmnJS;
+                          var viewer = new DmnModeler({ container: '#dmnCanvas' });
+                          $.get(restAccess + '/decision-definition/key/qualificationNeeded/xml', function(data) {
+                            viewer.importXML(data.dmnXml, function(err) {
+                              if (err) {
+                                console.log('error rendering dmn', err);
+                              }
+                              // re-render to apply new renderer
+                              viewer.get('elementRegistry').forEach(function(element, gfx) {
+                                viewer.get('graphicsFactory').update(element._type, element, gfx);
+                              });
+                            });
+                          });
+                        });
+                      </script>
                   </td>
                 </tr>
                 </tbody>
