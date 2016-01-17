@@ -46,7 +46,8 @@ angular.module('cattlecrewCaseManagementUiApp')
             documentName: 'casedocument.pdf',
             documentLink: 'assets/casedocument.pdf'
           }
-        ]
+        ],
+        desicions: []
       }
     };
 
@@ -250,6 +251,11 @@ angular.module('cattlecrewCaseManagementUiApp')
       return srv._caseDefinitionsArrayContainer;
     };
 
+    srv.putDecisionsInCache = function(decisionsFromRest, caseId) {
+      srv.initCaseInCache(caseId);
+      srv._cases[caseId].data.decisions = decisionsFromRest;
+    };
+
     //
     // Helper methods (externalize later)
     //
@@ -307,6 +313,9 @@ angular.module('cattlecrewCaseManagementUiApp')
       },
       getCaseDefinitionsArrayContainer: function() {
         return srv.getCaseDefinitionsArrayContainer();
+      },
+      putDecisionsInCache: function(decisions, caseId) {
+        srv.putDecisionsInCache(decisions, caseId);
       }
     };
   });

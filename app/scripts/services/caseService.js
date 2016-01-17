@@ -8,7 +8,7 @@
  * Factory in the cattlecrewCaseManagementUiApp.
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .factory('caseService', function (camundaCaseService, camundaCacheService) {
+  .factory('caseService', function (camundaCaseService, camundaCacheService, camundaDmnService) {
     //
     // local namespace
     //
@@ -16,6 +16,7 @@ angular.module('cattlecrewCaseManagementUiApp')
 
     srv._caseService = camundaCaseService;
     srv._cache = camundaCacheService;
+    srv._dmnService = camundaDmnService;
 
     //
     // Service logic
@@ -29,6 +30,7 @@ angular.module('cattlecrewCaseManagementUiApp')
     };
 
     srv.getEntireCase = function(entireCaseId) {
+      srv._dmnService.updateDecisions(entireCaseId);
       return srv._caseService.getEntireCase(entireCaseId);
     };
 

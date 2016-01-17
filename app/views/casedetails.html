@@ -2,18 +2,16 @@
   <h1>Case details</h1>
 
   <p class="lead">
-    Details to selected case
+    Details about the selected case
   </p>
 </div>
 
 <div class="row marketing">
 
-  <p>This is the case details view for case with id <kbd>{{case.data.details.id}}</kbd></p>
-
   <ul class="nav nav-tabs">
     <li class="active"><a ng-href="#/casedetails/{{case.data.details.id}}">Details</a></li>
-    <li><a ng-href="#/cmmn/{{case.data.details.id}}">Rendered CMMN</a></li>
-    <li><a ng-href="#/dmnhistory/{{case.data.details.id}}">DMN History</a></li>
+    <li><a ng-href="#/cmmn/{{case.data.details.id}}">Case image</a></li>
+    <li><a ng-href="#/dmnhistory/{{case.data.details.id}}">Decision history</a></li>
     <li><a ng-href="#/casedetailsraw/{{case.data.details.id}}">Raw data</a></li>
   </ul>
 
@@ -69,11 +67,11 @@
           <div class="panel panel-body">
             <table class="table table-hover">
               <tbody>
-              <tr
-                ng-repeat="document in resultedDocuments = (case.data.documents | orderBy: document.documentName : false)">
+              <tr ng-repeat="document in resultedDocuments = (case.data.documents | orderBy: document.documentName : false)">
                 <td><span class="glyphicon glyphicon-eye-open"></span></td>
                 <td>
                   <a href ng-click="openURL(document.documentLink)">{{document.documentName}}</a>
+                </td>
               </tr>
               </tbody>
             </table>
@@ -103,7 +101,7 @@
             </div>
             <div class="top-buffer">
               <strong>Technical ID</strong><br>
-              {{case.data.details.id}}<br>
+              <kbd>{{case.data.details.id}}</kbd><br>
             </div>
             <div class="top-buffer" ng-show="case.data.details.priority">
               <strong>Priority</strong><br>
@@ -167,8 +165,7 @@
           <div class="panel panel-body">
             <table class="table table-hover">
               <tbody>
-              <tr
-                ng-repeat="auditTrail in resultedAuditTrails = (case.data.auditTrail | orderBy: auditTrail.updatedDate : true)">
+              <tr ng-repeat="auditTrail in resultedAuditTrails = (case.data.auditTrail | orderBy: auditTrail.updatedDate : true)">
                 <td>{{auditTrail.objectDisplayName}}</td>
                 <td>{{auditTrail.updatedBy}} at {{auditTrail.updatedDateAsString}}</td>
               </tr>

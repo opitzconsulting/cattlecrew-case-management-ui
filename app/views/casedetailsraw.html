@@ -2,18 +2,16 @@
   <h1>Raw data</h1>
 
   <p class="lead">
-    Raw data to selected case
+    Raw data about the selected case
   </p>
 </div>
 
 <div class="row marketing">
 
-  <p>This is the case raw data view for case with id <kbd>{{case.data.details.id}}</kbd></p>
-
   <ul class="nav nav-tabs">
     <li><a ng-href="#/casedetails/{{case.data.details.id}}">Details</a></li>
-    <li><a ng-href="#/cmmn/{{case.data.details.id}}">Rendered CMMN</a></li>
-    <li><a ng-href="#/dmnhistory/{{case.data.details.id}}">DMN History</a></li>
+    <li><a ng-href="#/cmmn/{{case.data.details.id}}">Case image</a></li>
+    <li><a ng-href="#/dmnhistory/{{case.data.details.id}}">Decision history</a></li>
     <li class="active"><a ng-href="#/casedetailsraw/{{case.data.details.id}}">Raw data</a></li>
   </ul>
 
@@ -72,6 +70,13 @@
       <li class="list-group-item">
         <h4>Documents</h4>
         <pre>{{case.data.documents | json}}</pre>
+      </li>
+    </ul>
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Decisions</h4>
+        <pre>{{case.data.decisions | json}}</pre>
       </li>
     </ul>
 

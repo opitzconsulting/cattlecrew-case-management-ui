@@ -1,23 +1,93 @@
 <div class="jumbotron">
-  <h1>DMN History</h1>
+  <h1>Decision History</h1>
 
   <p class="lead">
-    History about decisions made
+    History about made decisions for case
   </p>
 </div>
 
 <div class="row marketing">
 
-  <p>This is the DMN history view for case with id <kbd>{{case.data.details.id}}</kbd></p>
-
   <ul class="nav nav-tabs">
     <li><a ng-href="#/casedetails/{{case.data.details.id}}">Details</a></li>
-    <li><a ng-href="#/cmmn/{{case.data.details.id}}">Rendered CMMN</a></li>
-    <li class="active"><a ng-href="#/dmnhistory/{{case.data.details.id}}">DMN History</a></li>
+    <li><a ng-href="#/cmmn/{{case.data.details.id}}">Case image</a></li>
+    <li class="active"><a ng-href="#/dmnhistory/{{case.data.details.id}}">Decision history</a></li>
     <li><a ng-href="#/casedetailsraw/{{case.data.details.id}}">Raw data</a></li>
   </ul>
 
-  <div class="col-md-12 top-buffer">
+  <div class="row top-buffer">
+
+    <div class="panel-group">
+
+      <div class="col-md-12">
+
+        <div class="panel panel-default"
+             ng-repeat="process in resultedProcesses = (case.data.decisions | orderBy: process.endTime : true)">
+          <div class="panel panel-heading">
+            <h4>Process {{process.processDefinitionKey}} <span class="badge pull-right">{{process.decisionInstances.length}}</span>
+            </h4>
+          </div>
+          <div class="panel panel-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                <tr>
+                  <th>Activity</th>
+                  <th>Inputs</th>
+                  <th>Outputs</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr
+                  ng-repeat="decisionInstance in resultedDecisionInstances = (process.decisionInstances | orderBy: decisionInstance.evaluationTime : true)">
+                  <td>{{decisionInstance.activityId}}</td>
+                  <td> <!-- Inputs -->
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="input in resultedInputs = (decisionInstance.inputs)">
+                          <td>{{input.clauseName}}</td>
+                          <td>{{input.value}}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                  <td> <!-- Outputs -->
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Value</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="output in resultedOutputs = (decisionInstance.outputs)">
+                          <td>{{output.clauseName}}</td>
+                          <td>{{output.value}}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 
 </div>
