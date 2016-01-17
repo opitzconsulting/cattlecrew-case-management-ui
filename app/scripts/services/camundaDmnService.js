@@ -23,7 +23,7 @@ angular.module('cattlecrewCaseManagementUiApp')
       get: {method: 'GET', isArray: true}
     });
 
-    srv._resourceDecisionInstanceByProcessInstanceId = $resource(srv._baseUrl + '/history/decision-instance?includeInputs=true&includeOutputs=true&processInstanceId=:processInstanceId', {}, {
+    srv._resourceDecisionInstanceByProcessInstanceId = $resource(srv._baseUrl + '/history/decision-instance?&includeInputs=true&includeOutputs=true&disableBinaryFetching=true&disableCustomObjectDeserialization=true&processInstanceId=:processInstanceId', {}, {
         get: {method: 'GET', isArray: true}
       });
 
