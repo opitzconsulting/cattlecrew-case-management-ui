@@ -24,7 +24,7 @@
         <div class="panel panel-default" ng-if="case.data.decisions[0].decisionInstances.length > 0"
              ng-repeat="process in resultedProcesses = (case.data.decisions | orderBy: process.endTime : true)">
           <div class="panel panel-heading">
-            <h4>Decisions in process {{process.processDefinitionKey}} <span class="badge pull-right">{{process.decisionInstances.length}}</span>
+            <h4>Decisions in process {{process.processDefinition.name}} <span class="badge pull-right">{{process.decisionInstances.length}}</span>
             </h4>
           </div>
           <div class="panel panel-body">
@@ -42,20 +42,20 @@
                 <tr ng-repeat="decisionInstance in resultedDecisionInstances = (process.decisionInstances | orderBy: decisionInstance.evaluationTime : true)">
                   <td> <!-- Details -->
                     <div>
-                      <strong>Activity TODO</strong><br>
-                      {{decisionInstance.activityId}}<br>
+                      <strong>Called by activity</strong><br>
+                      {{decisionInstance.calledByProcessActivity.activityName}}<br>
                     </div>
                     <div class="top-buffer">
-                      <strong>Decision definition REMOVE</strong><br>
-                      {{decisionInstance.decisionDefinitionId}}<br>
+                      <strong>Decision table</strong><br>
+                      {{decisionInstance.decisionDefinition.name}}<br>
+                    </div>
+                    <div class="top-buffer">
+                      <strong>Decision table version</strong><br>
+                      {{decisionInstance.decisionDefinition.version}}<br>
                     </div>
                     <div class="top-buffer">
                       <strong>Evaluation Time</strong><br>
                       {{decisionInstance.evaluationTime | date : 'dd.MM.yyyy HH:mm'}}<br>
-                    </div>
-                    <div class="top-buffer">
-                      <strong>Decision table version</strong><br>
-                      ---<br>
                     </div>
                   </td>
                   <td> <!-- Inputs -->

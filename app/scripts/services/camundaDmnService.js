@@ -19,18 +19,22 @@ angular.module('cattlecrewCaseManagementUiApp')
     //
     // Service logic
     //
-    srv._resourceProcessInstanceBySuperCaseInstanceId =  $resource(srv._baseUrl + '/history/process-instance?superCaseInstanceId=:superCaseInstanceId', {}, {
+    srv._resourceProcessInstance =  $resource(srv._baseUrl + '/history/process-instance?superCaseInstanceId=:superCaseInstanceId', {}, {
       get: {method: 'GET', isArray: true}
     });
 
-    srv._resourceDecisionInstanceByProcessInstanceId = $resource(srv._baseUrl + '/history/decision-instance?&includeInputs=true&includeOutputs=true&disableBinaryFetching=true&disableCustomObjectDeserialization=true&processInstanceId=:processInstanceId', {}, {
+    srv._resourceDecisionInstance = $resource(srv._baseUrl + '/history/decision-instance?&includeInputs=true&includeOutputs=true&disableBinaryFetching=true&disableCustomObjectDeserialization=true&processInstanceId=:processInstanceId', {}, {
         get: {method: 'GET', isArray: true}
       });
 
-    srv._resourceDecisionDefinitions = $resource(srv._baseUrl + '/decision-definition/:decisionDefinitionId');
+    srv._resourceDecisionDefinition = $resource(srv._baseUrl + '/decision-definition/:decisionDefinitionId');
+
+    srv._resourceProcessDefinition = $resource(srv._baseUrl + '/process-definition/:processDefinitionId');
+
+    srv._resourceProcessActivity = $resource(srv._baseUrl + '/history/activity-instance/:activityInstanceId');
 
     srv.loadProcessInstances = function(caseId) {
-      return srv._resourceProcessInstanceBySuperCaseInstanceId.get({superCaseInstanceId: caseId}).$promise;
+      return srv._resourceProcessInstance.get({superCaseInstanceId: caseId}).$promise;
     };
 
     srv.updateDecisions = function(caseId) {
@@ -44,10 +48,30 @@ angular.module('cattlecrewCaseManagementUiApp')
     srv.loadDecisions = function(processes) {
       var promises = processes.map(function(processInstance) {
         return $q(function(resolve, reject) {
-          srv._resourceDecisionInstanceByProcessInstanceId.get({processInstanceId: processInstance.id}, function(result) {
+          // load process definition
+          srv._resourceProcessDefinition.get({processDefinitionId: processInstance.processDefinitionId}, function(res) {
+           processInstance.processDefinition = res;
+          });
+          // load decisions
+          srv._resourceDecisionInstance.get({processInstanceId: processInstance.id}, function(result) {
             result.forEach(function(decisionInstance) {
               processInstance.decisionInstances = [];
-              processInstance.decisionInstances.push(decisionInstance);
+
+              var decision = decisionInstance;
+
+              // load decision definition
+              srv._resourceDecisionDefinition.get({decisionDefinitionId: decision.decisionDefinitionId}, function(result3) {
+                decision.decisionDefinition = {};
+                decision.decisionDefinition = result3;
+              });
+
+              // load process activity
+              srv._resourceProcessActivity.get({activityInstanceId: decision.activityInstanceId}, function(respActivity) {
+                decision.calledByProcessActivity = {};
+                decision.calledByProcessActivity = respActivity;
+              });
+
+              processInstance.decisionInstances.push(decision);
             });
             resolve(processInstance);
           }, function(error) {
