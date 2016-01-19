@@ -32,7 +32,6 @@ module.exports = function(config) {
       'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/angular-touch/angular-touch.js',
       'bower_components/dmn-js/dist/dmn-viewer.js',
-      'bower_components/cmmn-js/dist/cmmn-viewer.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
