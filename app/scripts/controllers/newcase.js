@@ -19,25 +19,10 @@ angular.module('cattlecrewCaseManagementUiApp')
 
       $scope.requestData = {
         businessKey: null,
-        variables: {
-          priority: {
-            value: null,
-            type: 'String'
-          },
-          partiesInvolved: {
-            value: null,
-            type: 'Integer'
-          },
-          accountableIdentified: {
-            value: false,
-            type: 'Boolean'
-          },
-          claimAmount: {
-            value: null,
-            type: 'Integer'
-          }
-        }
+        variables: {}
       };
+
+      $scope.variables = new Array();
 
     };
 
@@ -48,9 +33,12 @@ angular.module('cattlecrewCaseManagementUiApp')
     };
 
     $scope.createCaseInstance = function(key) {
-      if($scope.requestData.variables.priority.value === null){
-        delete $scope.requestData.variables.priority;
-      }
+      $scope.variables.forEach(function (element, index, array){
+        $scope.requestData.variables[element.key] = {
+          value : element.value,
+          type : element.type};
+      });
+
       caseService.createCaseInstance(key, $scope.requestData);
     };
 
@@ -58,4 +46,11 @@ angular.module('cattlecrewCaseManagementUiApp')
       $location.path('/');
     };
 
+    $scope.addVariable = function () {
+      $scope.variables.push({
+        key : null,
+        value : null,
+        type : null
+      });
+    };
   });
