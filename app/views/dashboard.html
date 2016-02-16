@@ -46,7 +46,6 @@
             <th>Business ID</th>
             <th>Case</th>
             <th>Technical ID</th>
-            <th>Priority</th>
             <th>Created</th>
             <th>Last Edited</th>
             <th>Status</th>
@@ -58,7 +57,6 @@
             <td>{{case.businessKey}}</td>
             <td>{{case.caseDefinition}}</td>
             <td>{{case.id}}</td>
-            <td>{{case.priority}}</td>
             <td><span ng-if="case.createByAsString">{{case.createByAsString}} at {{case.createDateAsString}}</span></td>
             <td><span ng-if="case.updateByAsString">{{case.updateByAsString}} at {{case.updateDateAsString}}</span></td>
             <td>{{case.state}}</td>

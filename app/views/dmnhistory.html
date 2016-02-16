@@ -22,7 +22,7 @@
       <div class="col-md-12">
 
         <div class="panel panel-default" ng-if="case.data.decisions[0].decisionInstances.length > 0"
-             ng-repeat="process in resultedProcesses = (case.data.decisions | orderBy: process.endTime : true) track by $index" ng-init="outerIndex = $index">
+             ng-repeat="process in resultedProcesses = (case.data.decisions | orderBy: process.endTime : false) track by $index" ng-init="outerIndex = $index">
           <div class="panel panel-heading">
             <h4>Decisions in process {{process.processDefinition.name}} <span class="badge pull-right">{{process.decisionInstances.length}}</span>
             </h4>
@@ -95,7 +95,7 @@
                     </div>
                   </td>
                   <td> <!-- Decision table -->
-                    <div id="myDiv-{{outerIndex}}" style="visibility: visible;">
+                    <div id="myDiv" style="visibility: visible;">
                       {{decisionInstance.decisionDefinitionId}}
                     </div>
                       <div id="dmn-drop-zone">
@@ -103,12 +103,19 @@
                       </div>
                     <script> // Decision table script
                     $(document).ready(function() {
-                      for(var index = 0; index < 2; index++) { // dirty solution. fix it
+//                      for(var index = 0; index < 2; index++) { // dirty solution. fix it
                         $('#dmnCanvas').children().remove(); // remove old tables on reload
                         var restAccess = 'http://localhost:8080/engine-rest';
                         var DmnModeler = window.DmnJS;
                         var viewer = new DmnModeler({container: '#dmnCanvas'});
-                        $.get(restAccess + '/decision-definition/' + $('#myDiv-' + index).text().trim() + '/xml', function(data) {
+//                        var def = $('#myDiv-' + index).text().trim();
+                        var def = 'key/qualificationNeeded';
+//                        if (def === '' || def === undefined || def === null && index === 0) {
+//                          def = 'key/qualificationNeeded';
+//                        } else {
+//                          def = 'key/requiredDocuments';
+//                        }
+                        $.get(restAccess + '/decision-definition/' + def + '/xml', function(data) {
                           viewer.importXML(data.dmnXml, function (err) {
                             if (err) {
                               console.log('error rendering dmn', err);
@@ -119,7 +126,7 @@
                             });
                           });
                         });
-                      }
+//                      }
                     });
                     </script>
                   </td>
