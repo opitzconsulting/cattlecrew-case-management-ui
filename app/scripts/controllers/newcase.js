@@ -8,9 +8,15 @@
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('NewCaseCtrl', function ($scope, $location, caseService) {
+  .controller('NewCaseCtrl', function ($scope, $location, caseService,  localizationService) {
 
-    $scope.initView = function() {
+
+    $scope.initView = function() 
+    
+      $scope.getString = function(key){
+		        return localizationService.getString(key);
+			    };
+	{
       $scope.caseDefinitionsArrayContainer = caseService.getCaseDefinitionsArrayContainer();
 
       if ($scope.caseDefinitionsArrayContainer.caseDefinitionList.length === 0) {

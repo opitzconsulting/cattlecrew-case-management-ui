@@ -1,9 +1,12 @@
 <div class="jumbotron">
-  <h1>Dashboard</h1>
+	<h1>{{getString('dashboard')}}</h1>
 
   <p class="lead">
-    Displaying all existing cases
-  </p>
+  {{getString('dashboardDesc')}}
+    </p>
+    <a ng-href="" ng-click="setLocale('en-us')">English</a>
+    <a ng-href="" ng-click="setLocale('de-de')">Deutsch</a>
+<
 </div>
 
 <div class="row marketing">
@@ -15,7 +18,7 @@
       <div class="col-md-4">
         <form class="form-inline" role="form">
           <div class="form-group">
-            <input id="searchText" type="text" class="form-control" placeholder="Search..." ng-model="searchText">
+		  <input id="searchText" type="text" class="form-control" placeholder="{{getString('search')}}..." ng-model="searchText">
           </div>
           <div class="form-group">
             <a class="clear" ng-click="searchText=''"><span class="glyphicon glyphicon-remove"></span></a>
@@ -28,7 +31,7 @@
           <div class="form-group">
             <select id="filterCase" class="form-control" ng-model="selectedCaseDefinition"
                     ng-options="caseDefinition.key for caseDefinition in caseDefinitionsArrayContainer.caseDefinitionList">
-              <option value="">-- Filter Case --</option>
+		    <option value="">{{getString('filterCase')}}</option>
             </select>
           </div>
         </form>
@@ -43,12 +46,12 @@
         <table class="table table-hover">
           <thead>
           <tr>
-            <th>Business ID</th>
-            <th>Case</th>
-            <th>Technical ID</th>
-            <th>Created</th>
-            <th>Last Edited</th>
-            <th>Status</th>
+	    <th>{{getString('businessId')}}</th>
+	    <th>{{getString('case')}}</th>
+	    <th>{{getString('technicalId')}}</th>
+	    <th>{{getString('created')}}</th>
+	    <th>{{getString('lastEdited')}}</th>
+	    <th>{{getString('status')}}</th>
           </tr>
           </thead>
           <tbody>
@@ -67,7 +70,7 @@
           </tbody>
         </table>
 
-        <p class="text-right">{{resultedCases.length}} Cases are displayed</p>
+	<p class="text-right">{{resultedCases.length}} {{getString('casesAreDisplayed')}}</p>
 
       </div>
 
