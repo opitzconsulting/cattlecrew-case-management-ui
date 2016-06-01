@@ -1,6 +1,6 @@
 'use strict';
 
-describe('Directive: renderCmmn', function () {
+describe('Directive: renderCaseModel', function () {
 
   // load the directive's module
   beforeEach(module('cattlecrewCaseManagementUiApp'));
