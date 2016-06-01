@@ -21,27 +21,27 @@ angular.module('cattlecrewCaseManagementUiApp')
     srv.res =  {
     	'appName': {
 	     'de-de': 'CattleCrew Case Management UI',
-	     'en-us': 'CattleCrew Case Mangement UI',
+	     'en-us': 'CattleCrew Case Mangement UI'
 	},
      	'dashboard':{
 	     'de-de': 'Dashboard',
-	     'en-us': 'Dashboard',
+	     'en-us': 'Dashboard'
      	},
 	'New Case':{
 		'de-de': 'Neuer Fall',
-		'en-us': 'New Case',
+		'en-us': 'New Case'
 	},
 	'About':{
 		'de-de': 'Über',
-		'en-us': 'About',
+		'en-us': 'About'
 	},
 	'dashboardDesc':{
 		'de-de': 'Übersicht über alle vorhandene Fälle',
-		'en-us': 'Displaying all existing cases',
+		'en-us': 'Displaying all existing cases'
 	},
 	'search':{
 		'de-de': 'Suche',
-		'en-us': 'Search',
+		'en-us': 'Search'
 	},
 	'filterCase':{
 		'de-de': 'Filter Fälle',
@@ -53,11 +53,11 @@ angular.module('cattlecrewCaseManagementUiApp')
 	},
 	'case':{
 		'de-de': 'Fall',
-		'en-us': 'Case',
+		'en-us': 'Case'
 	},
 	'technicalId':{
 		'de-de': 'Technische ID',
-		'en-us': 'Techical ID',
+		'en-us': 'Techical ID'
 	},
 	'created':{
 		'de-de': 'Erstellt am',
@@ -65,15 +65,15 @@ angular.module('cattlecrewCaseManagementUiApp')
 	},
 	'lastEdited':{
 		'de-de': 'Zuletzt bearbeitet am',
-		'en-us': 'Last Edited',
+		'en-us': 'Last Edited'
 	},
 	'status': {
 		'de-de': 'Status',
-		'en-us': 'Status',
+		'en-us': 'Status'
 	},
 	'casesAreDisplayed':{
 		'de-de': 'Fälle werden angezeigt',
-		'en-us': 'Cases are displayed',
+		'en-us': 'Cases are displayed'
 	},
 	'fromTheOptizTeam':{
 		'de-de': 'von dem OPITZ CONSULTING Team',
@@ -90,10 +90,6 @@ angular.module('cattlecrewCaseManagementUiApp')
 	'selectAcase':{
 		'de-de': 'Fallauswahl',
 		'en-us': 'Select a case'
-	},
-	'case':{
-		'de-de': 'Fall',
-		'en-us': 'Case'
 	},
 	'createNewInstanceOf':{
 		'de-de': 'Erzeuge eine neue Instanz von',
