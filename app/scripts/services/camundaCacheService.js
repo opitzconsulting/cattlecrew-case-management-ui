@@ -162,6 +162,7 @@ angular.module('cattlecrewCaseManagementUiApp')
 
         srv._cases[caseId].data.auditTrail.push({
           objectDisplayName: objectDisplayName + element.caseActivityName,
+          caseActivityId: element.caseActivityId,
           type: 'ACTIVITY_EVENT',
           updatedBy: 'John Doe',
           updatedDate: new Date(element.createTime),
