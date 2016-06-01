@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <h1>Rendered Case</h1>
+
+  <p class="lead">
+    Display case as image
+  </p>
+</div>
+
+<div class="row marketing">
+
+  <ul class="nav nav-tabs">
+    <li><a ng-href="#/casedetails/{{case.data.details.id}}">Case Details</a></li>
+    <li class="active"><a ng-href="#/casemodel/{{case.data.details.id}}">Case Model</a></li>
+    <li><a ng-href="#/casedecisionhistory/{{case.data.details.id}}">Case Decision History</a></li>
+    <li><a ng-href="#/caserawdata/{{case.data.details.id}}">Case Raw Data</a></li>
+  </ul>
+
+  <div class="col-md-12 top-buffer">
+
+    <section id="cmmn" class="group">
+
+      <div data-render-cmmn case-definition="{{case.data.details.caseDefinition}}" highlight-case-activity-ids="{{activeCaseActivityIds()}}"></div>
+
+    </section>
+  </div>
+
+
+</div>
+
+
+

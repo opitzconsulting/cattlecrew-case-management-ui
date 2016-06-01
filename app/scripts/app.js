@@ -18,7 +18,6 @@ angular
     'ngTouch'
   ])
   .config(function ($routeProvider/**, $compileProvider */) {
-    //$compileProvider.debugInfoEnabled(true); TODO testimonial in combination with jquery
     $routeProvider
       .when('/', {
         templateUrl: 'views/dashboard.html',
@@ -36,25 +35,24 @@ angular
         controllerAs: 'newcase'
       })
       .when('/casedetails/:caseId', {
-        //templateUrl: 'views/details.html',
         templateUrl: 'views/casedetails.html',
         controller: 'CaseDetailsCtrl',
         controllerAs: 'casedetails'
       })
-      .when('/cmmn/:caseId', {
-        templateUrl: 'views/cmmnrender.html',
-        controller: 'CmmnRenderCtrl',
-        controllerAs: 'cmmn'
+      .when('/casemodel/:caseId', {
+        templateUrl: 'views/casemodel.html',
+        controller: 'CaseModelCtrl',
+        controllerAs: 'casemodel'
       })
-      .when('/casedetailsraw/:caseId', {
-        templateUrl: 'views/casedetailsraw.html',
-        controller: 'CasedetailsrawCtrl',
-        controllerAs: 'casedetailsraw'
+      .when('/casedecisionhistory/:caseId', {
+        templateUrl: 'views/casedecisionhistory.html',
+        controller: 'CaseDecisionHistoryCtrl',
+        controllerAs: 'casedecisionhistory'
       })
-      .when('/dmnhistory/:caseId', {
-        templateUrl: 'views/dmnhistory.html',
-        controller: 'DmnhistoryCtrl',
-        controllerAs: 'dmnhistory'
+      .when('/caserawdata/:caseId', {
+        templateUrl: 'views/caserawdata.html',
+        controller: 'CaseRawDataCtrl',
+        controllerAs: 'caserawdata'
       })
       .otherwise({
         redirectTo: '/'

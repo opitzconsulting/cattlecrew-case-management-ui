@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: DmnhistoryCtrl', function () {
+describe('Controller: CaseModelCtrl', function () {
 
   // load the controller's module
   beforeEach(module('cattlecrewCaseManagementUiApp'));
 
-  var DmnhistoryCtrl,
+  var CaseModelCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    DmnhistoryCtrl = $controller('DmnhistoryCtrl', {
+    CaseModelCtrl = $controller('CaseModelCtrl', {
       $scope: scope
       // place here mocked dependencies
     });

@@ -65,6 +65,16 @@ body {
   margin-top:20px;
 }
 
+/* CMMN rendering style */
+.djs-container .highlight .djs-outline {
+  stroke-width: 2px !important;
+  stroke: #08c !important;
+  fill: #bce2f5 !important;
+}
+.djs-container .highlight .djs-visual>:nth-child(1) {
+  fill: #bce2f5 !important;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
 

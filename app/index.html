@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/timeline.css">
     <link rel="stylesheet" href="bower_components/dmn-js/dist/css/dmn-js.css">
+    <link rel="stylesheet" href="bower_components/cmmn-js/dist/assets/diagram-js.css">
     <!-- endbuild -->
   </head>
   <body ng-app="cattlecrewCaseManagementUiApp">
@@ -84,29 +85,33 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/dmn-js/dist/dmn-viewer.js"></script>
+    <script src="bower_components/cmmn-js/dist/cmmn-viewer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <!-- custom directives -->
     <script src="scripts/directives/ccrtab.js"></script>
+    <script src="scripts/directives/rendercmmn.js"></script>
     <!-- custom controller -->
     <script src="scripts/controllers/dashboard.js"></script>
-    <script src="scripts/controllers/casedetails.js"></script>
-    <script src="scripts/controllers/cmmnrender.js"></script>
-    <script src="scripts/controllers/dmnhistory.js"></script>
-    <script src="scripts/controllers/casedetailsraw.js"></script>
     <script src="scripts/controllers/newcase.js"></script>
     <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/casedetails.js"></script>
+    <script src="scripts/controllers/casemodel.js"></script>
+    <script src="scripts/controllers/casedecisionhistory.js"></script>
+    <script src="scripts/controllers/caserawdata.js"></script>
     <!-- custom services -->
     <script src="scripts/services/caseService.js"></script>
+    <script src="scripts/services/utilService.js"></script>
+    <script src="scripts/services/tabbingService.js"></script>
+    <script src="scripts/services/localizationService.js"></script>
+    <!-- engine specific services -->
     <script src="scripts/services/camundaCaseService.js"></script>
     <script src="scripts/services/camundaCacheService.js"></script>
     <script src="scripts/services/camundaConstantsService.js"></script>
     <script src="scripts/services/camundaDmnService.js"></script>
-    <script src="scripts/services/utilService.js"></script>
-    <script src="scripts/services/tabbingService.js"></script>
-    <script src="scripts/services/localizationService.js"></script>
     <!-- endbuild -->
 </body>
 </html>

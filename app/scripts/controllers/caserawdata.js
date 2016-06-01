@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name cattlecrewCaseManagementUiApp.controller:CmmnCtrl
+ * @name cattlecrewCaseManagementUiApp.controller:CaseRawDataCtrl
  * @description
- * # CmmnCtrl
+ * # CaseRawDataCtrl
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('CmmnRenderCtrl', function ($scope, $location, $routeParams, caseService, tabbingService) {
+  .controller('CaseRawDataCtrl', function ($scope, $location, $routeParams, caseService, tabbingService) {
 
     $scope.initView = function(caseId) {
 

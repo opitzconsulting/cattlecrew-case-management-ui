@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name cattlecrewCaseManagementUiApp.controller:DmnhistoryCtrl
+ * @name cattlecrewCaseManagementUiApp.controller:CaseDecisionHistoryCtrl
  * @description
- * # DmnhistoryCtrl
+ * # CaseDecisionHistoryCtrl
  * Controller of the cattlecrewCaseManagementUiApp
  */
 angular.module('cattlecrewCaseManagementUiApp')
-  .controller('DmnhistoryCtrl', function ($scope, $location, $routeParams, caseService, tabbingService) {
+  .controller('CaseDecisionHistoryCtrl', function ($scope, $location, $routeParams, caseService, tabbingService) {
 
     $scope.initView = function(caseId) {
 
