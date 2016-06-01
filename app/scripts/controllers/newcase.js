@@ -10,13 +10,11 @@
 angular.module('cattlecrewCaseManagementUiApp')
   .controller('NewCaseCtrl', function ($scope, $location, caseService,  localizationService) {
 
+    $scope.getString = function(key){
+      return localizationService.getString(key);
+    };
 
-    $scope.initView = function() 
-    
-      $scope.getString = function(key){
-		        return localizationService.getString(key);
-			    };
-	{
+    $scope.initView = function() {
       $scope.caseDefinitionsArrayContainer = caseService.getCaseDefinitionsArrayContainer();
 
       if ($scope.caseDefinitionsArrayContainer.caseDefinitionList.length === 0) {
@@ -28,7 +26,7 @@ angular.module('cattlecrewCaseManagementUiApp')
         variables: {}
       };
 
-      $scope.variables = new Array();
+      $scope.variables = [];
 
     };
 
@@ -39,7 +37,7 @@ angular.module('cattlecrewCaseManagementUiApp')
     };
 
     $scope.createCaseInstance = function(key) {
-      $scope.variables.forEach(function (element, index, array){
+      $scope.variables.forEach(function (element){
         $scope.requestData.variables[element.key] = {
           value : element.value,
           type : element.type};
