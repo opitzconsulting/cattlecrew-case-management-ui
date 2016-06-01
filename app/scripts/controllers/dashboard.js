@@ -10,10 +10,9 @@
 angular.module('cattlecrewCaseManagementUiApp')
   .controller('DashboardCtrl', function($scope, $locale, caseService, localizationService) {
 
-
     $scope.setLocale = function(id){
 	    $locale.id = id;
-    }
+    };
 
     $scope.getString = function(key){
     	return localizationService.getString(key);
