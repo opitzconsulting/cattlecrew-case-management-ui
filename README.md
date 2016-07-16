@@ -1,49 +1,36 @@
 # CattleCrew Case Management UI
 
-This is the CattleCrew Case Management UI source.
+Welcome to the CattleCrew Case Management UI source code!
 
-It is development with the [AngularJS](https://angularjs.org/) and uses [Grunt](http://gruntjs.com/) as build tool.
-
-## Structure of this project
-
-The structure is as follows:
-
-* `app` - HTML, CSS and Javascript sources.
-* `test` - Tests for the app sources.
-
-## UI
-
-This webapp provides an interface to interact with CMMN 1.1 models in the camunda BPM platform via REST API.
+The CattleCrew Case Management UI provides an interface to interact with CMMN 1.1 models in the camunda BPM platform via the REST API. It is development with [AngularJS](https://angularjs.org/) and uses [Grunt](http://gruntjs.com/) as build tool.
 
 It is relying on the following libraries:
 
 * __cmmn-js__: provides diagram rendering support for CMMN 1.1 models 
+
+## Try it out
+
+Download the prepackaged distribution from [CattleCrew Blog](https://thecattlecrew.net/) by following the [link](https://#/) and extract it in your application server (e.g. Apache Tomcat).
+
+Follow the instructions on https://camunda.org/ to adjust a CMMN Project.
+
+After adjusting the backend part call the CattleCrew Case Management UI webapp (e.g. http://localhost:8080/cattlecrew-case-management-ui/) via your browser to interact with your CMMN project.
 
 ## Development
 
 ### Prerequisite
 
 For this project you need [node.js](http://nodejs.org/) in version <= 4.4.7 with a npm version <= 3.10.5.
-To ensure to have the an actual version of [npm](https://www.npmjs.com/) update globally using `npm install -g npm`.
+To ensure to have the an actual version of [npm](https://www.npmjs.com/) update it globally using `npm install -g npm`.
 You need to install [bower](https://bower.io/) globally using `npm install -g bower`.
 You will also need to install [grunt](http://gruntjs.com/) globally using `npm install -g grunt grunt-cli`.
-Optionally if you want to use a scaffolding tool for development you need to install [yeoman](http://yeoman.io/) globally using `npm install -g yo`.
-
-The backend part is not in scope of this project but by default you need JDK 7+ and [Maven](https://maven.apache.org/) 3.2.1+.
+Optionally if you want to use a scaffolding tool for development you should install [yeoman](http://yeoman.io/) globally using `npm install -g yo`.
 
 ### Setup
 
-#### Adjusting Java Project (Backend)
+#### Install the webapp
 
-See https://camunda.org/ and follow the instructions to
-
-* setup an application server,
-* create a BPM Project
-* and add a CMMN 1.1 model. 
-
-#### Using grunt
-
-Installing the webapp is done by grunt:
+Follow the instructions:
 
 ```sh
 # cd <path to your workspace>
@@ -54,7 +41,7 @@ bower install
 grunt
 ```
 
-Finally the distribution will build in the `/dist` folder. 
+Finally the distribution will be build in the `/dist` folder. 
 
 To start a web-server for development, call
 
@@ -64,15 +51,32 @@ grunt serve
 
 The webapp is then available pointing a browser at [http://localhost:9000](http://localhost:9000)
 
-You can now start developing in the webapp directory.
+You can now start developing in the webapp directory. Please note CORS problem eventually.
 
 #### Testing
 
-Install the webapp with grunt and start the server. To run the tests, call
+To run the tests with grunt, call
 
 ```sh
 grunt test
 ```
+
+#### Create a CMMN Project
+
+The backend part is not in scope of this project but in most cases you need JDK 7+ and [Maven](https://maven.apache.org/) 3.2.1+.
+
+Go to https://camunda.org/ and follow the instructions to
+
+* setup an application server,
+* create a BPM Project
+* and add a CMMN 1.1 model. 
+
+### Structure of this project
+
+The structure is as follows:
+
+* `app` - HTML, CSS and Javascript sources.
+* `test` - Tests for the app sources.
 
 ## Browsers support
 
@@ -95,9 +99,9 @@ In place of a guide, just follow the formatting of existing code (and / or use t
 
 ## Help and support
 
-* Have a look in the [Documentation](https://github.com/opitzconsulting/cattlecrew-case-management-ui/)
+* Have a look at the [blog entry](https://#/) at [CattleCrew Blog](https://thecattlecrew.net/)
 * Contact us via [e-mail](<halil.hancioglu@opitz-consulting.com>) 
-* Visit our website [http://www.opitz-consulting.com/](http://www.opitz-consulting.com/) to get more detailed info about this project
+* Visit our website [http://www.opitz-consulting.com/](http://www.opitz-consulting.com/) to get more detailed info about us
 
 ## License
 
