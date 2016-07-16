@@ -12,10 +12,11 @@ angular.module('cattlecrewCaseManagementUiApp')
       restrict: 'AE',
       replace: 'true',
       templateUrl: 'views/templates/rendercasemodel.html',
-      scope: { caseDefinition: '@',
-        highlightCaseActivityId: '@'
+      scope: {
+        caseDefinition: '@',
+        highlightCaseActivityIds: '@'
       },
-      link: function (scope, elem, attrs) {
+      link: function (scope, element, attrs) {
         angular.element(document).ready(function () {
 
           // observe caseDefinition
@@ -32,7 +33,6 @@ angular.module('cattlecrewCaseManagementUiApp')
                   if (err) {
                     console.log('error rendering cmmn xml', err);
                   }
-                  console.log('rendered');
                   var canvas = viewer.get('canvas');
                   // zoom to fit full viewport
                   canvas.zoom('fit-viewport');
@@ -62,7 +62,6 @@ angular.module('cattlecrewCaseManagementUiApp')
                   if (err) {
                     console.log('error rendering cmmn xml', err);
                   }
-                  console.log('rendered');
                   var canvas = viewer.get('canvas');
                   // zoom to fit full viewport
                   canvas.zoom('fit-viewport');
