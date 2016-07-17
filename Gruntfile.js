@@ -28,6 +28,9 @@ module.exports = function (grunt) {
     dist: 'dist'
   };
 
+  // Enable JS implementation for generating a WAR file
+  grunt.loadNpmTasks('grunt-war');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -425,7 +428,36 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    // Rule requireCamelCaseOrUpperCaseIdentifiers will be disabled.
+    // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+    /*
+     * Build a WAR (web archive) without Maven or the JVM installed.
+     */
+    war: {
+      target: {
+        options: {
+          war_dist_folder: '<%= yeoman.dist %>',
+          war_verbose: true,
+          war_name: 'cattlecrew-case-management-ui',
+          webxml_welcome: 'index.html',
+          webxml_display_name: 'CattleCrew Case Management UI',
+          webxml_mime_mapping: []
+        },
+        files: [
+          {
+            expand: true,
+            cwd: '<%= yeoman.dist %>',
+            src: ['**'],
+            dest: '.'
+          }
+        ]
+      }
     }
+    // Rule requireCamelCaseOrUpperCaseIdentifiers will be enabled.
+    // jscs:enable requireCamelCaseOrUpperCaseIdentifiers
+
   });
 
 
@@ -442,11 +474,6 @@ module.exports = function (grunt) {
       'connect:livereload',
       'watch'
     ]);
-  });
-
-  grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run(['serve:' + target]);
   });
 
   grunt.registerTask('test', [
@@ -473,7 +500,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'war'
   ]);
 
   grunt.registerTask('default', [

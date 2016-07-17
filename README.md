@@ -2,7 +2,7 @@
 
 Welcome to the CattleCrew Case Management UI source code!
 
-The CattleCrew Case Management UI provides an interface to interact with CMMN 1.1 models in the camunda BPM platform via the REST API. It is development with [AngularJS](https://angularjs.org/) and uses [Grunt](http://gruntjs.com/) as build tool.
+The CattleCrew Case Management UI provides an interface to interact with CMMN 1.1 models in the camunda BPM platform via REST. It is development with [AngularJS](https://angularjs.org/) and uses [Grunt](http://gruntjs.com/) as build tool.
 
 It is relying on the following libraries:
 
@@ -10,7 +10,7 @@ It is relying on the following libraries:
 
 ## Try it out
 
-Download the prepackaged distribution from [CattleCrew Blog](https://thecattlecrew.net/) by following the [link](https://#/) and extract it in your application server (e.g. Apache Tomcat).
+Download the prepackaged distribution from the [CattleCrew Blog](https://thecattlecrew.net/) and deploy it in your application server (e.g. Apache Tomcat).
 
 Follow the instructions on https://camunda.org/ to adjust a CMMN Project.
 
@@ -41,7 +41,7 @@ bower install
 grunt
 ```
 
-Finally the distribution will be build in the `/dist` folder. 
+Finally the distribution will be build in the `/dist` folder named as `/cattlecrew-case-management-ui.war`.
 
 To start a web-server for development, call
 
@@ -51,7 +51,7 @@ grunt serve
 
 The webapp is then available pointing a browser at [http://localhost:9000](http://localhost:9000)
 
-You can now start developing in the webapp directory. Please note CORS problem eventually.
+You can now start developing in the webapp directory. Please note CORS problems eventually.
 
 #### Testing
 
