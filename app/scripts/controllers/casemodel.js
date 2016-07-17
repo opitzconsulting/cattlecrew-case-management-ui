@@ -14,8 +14,10 @@ angular.module('cattlecrewCaseManagementUiApp')
       var activeCaseActivityIds = '';
       $scope.case.data.auditTrail.forEach(function (element) {
         if (element.objectDisplayName.includes('Activity started')) {
+          if (activeCaseActivityIds !== '') {
+            activeCaseActivityIds = activeCaseActivityIds.concat(';');
+          }
           activeCaseActivityIds = activeCaseActivityIds.concat(element.caseActivityId);
-          activeCaseActivityIds = activeCaseActivityIds.concat(';');
         }
       });
       return activeCaseActivityIds;
