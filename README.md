@@ -41,7 +41,7 @@ bower install
 grunt
 ```
 
-Finally the distribution will be build in the `/dist` folder named as `/cattlecrew-case-management-ui.war`.
+Finally the distribution will be build in the `/build` folder named as `/cattlecrew-case-management-ui.war`.
 
 To start a web-server for development, call
 

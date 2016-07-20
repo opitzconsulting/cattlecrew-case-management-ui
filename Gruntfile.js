@@ -438,7 +438,7 @@ module.exports = function (grunt) {
     war: {
       target: {
         options: {
-          war_dist_folder: '<%= yeoman.dist %>',
+          war_dist_folder: 'build',
           war_verbose: true,
           war_name: 'cattlecrew-case-management-ui',
           webxml_welcome: 'index.html',
@@ -448,7 +448,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: '<%= yeoman.dist %>',
+            cwd: 'build',
             src: ['**'],
             dest: '.'
           }
