@@ -172,7 +172,8 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      build: 'build'
     },
 
     // Add vendor prefixed styles
@@ -487,6 +488,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'clean:build',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
