@@ -100,7 +100,7 @@ In place of a guide, just follow the formatting of existing code (and / or use t
 ## Help and support
 
 * Have a look at the [blog entry](https://#/) at [CattleCrew Blog](https://thecattlecrew.net/)
-* Contact us via [e-mail](<halil.hancioglu@opitz-consulting.com>) 
+* Contact us via [e-mail](mailto:halil.hancioglu@opitz-consulting.com) 
 * Visit our website [http://www.opitz-consulting.com/](http://www.opitz-consulting.com/) to get more detailed info about us
 
 ## License
