@@ -10,11 +10,11 @@ It is relying on the following libraries:
 
 ## Try it out
 
-Download the prepackaged distribution from the [CattleCrew Blog](https://thecattlecrew.net/) and deploy it in your application server (e.g. Apache Tomcat).
+Download the desired release from the [Release page](https://github.com/opitzconsulting/cattlecrew-case-management-ui/releases/) and deploy it in your application server (e.g. Apache Tomcat).
 
 Follow the instructions on https://camunda.org/ to adjust a CMMN Project.
 
-After adjusting the backend part call the CattleCrew Case Management UI webapp (e.g. http://localhost:8080/cattlecrew-case-management-ui/) via your browser to interact with your CMMN project.
+After adjusting the backend call the CattleCrew Case Management UI webapp (e.g. http://localhost:8080/cattlecrew-case-management-ui/) via your browser to interact with your CMMN project.
 
 ## Development
 
@@ -51,7 +51,7 @@ grunt serve
 
 The webapp is then available pointing a browser at [http://localhost:9000](http://localhost:9000)
 
-You can now start developing in the webapp directory. Please note CORS problems eventually.
+You can now start developing. Please note CORS problems eventually.
 
 #### Testing
 
@@ -91,7 +91,7 @@ The supported browsers are:
 You are __more than welcome__ to take part on the development of this project!
 
 Clone the repository, add, fix or improve and send us a pull request.
-But please take care about the commit messages.
+But please take care about the commit messages and have a look at this [wiki entry](https://github.com/erlang/otp/wiki/Writing-good-commit-messages).
 
 You can submit issues in the [Issues](https://github.com/opitzconsulting/cattlecrew-case-management-ui/issues/).
 
@@ -105,7 +105,8 @@ In place of a guide, just follow the formatting of existing code (and / or use t
 
 ## License
 
-Unless otherwise specified this project is licensed under [Apache License Version 2.0](./LICENSE).
+Copyright (c) 2016 Halil Hancioglu
+Licensed under the [MIT license](./LICENSE).
 
 ## Build Status
 
