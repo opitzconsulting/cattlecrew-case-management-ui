@@ -43,8 +43,8 @@ angular.module('cattlecrewCaseManagementUiApp')
             documentLink: 'assets/claimfile.pdf'
           },
           {
-            documentName: 'casedocument.pdf',
-            documentLink: 'assets/casedocument.pdf'
+            documentName: 'overview.pdf',
+            documentLink: 'assets/overview.pdf'
           }
         ],
         desicions: []
