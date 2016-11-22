@@ -20,7 +20,7 @@ After adjusting the backend call the CattleCrew Case Management UI webapp (e.g. 
 
 ### Prerequisite
 
-For this project you need [node.js](http://nodejs.org/) in version <= 4.4.7 with a npm version <= 3.10.5.
+For this project you need [node.js](http://nodejs.org/) in version ~4.5.0 with a npm version ~3.10.5.
 To ensure to have the an actual version of [npm](https://www.npmjs.com/) update it globally using `npm install -g npm`.
 You need to install [bower](https://bower.io/) globally using `npm install -g bower`.
 You will also need to install [grunt](http://gruntjs.com/) globally using `npm install -g grunt grunt-cli`.
