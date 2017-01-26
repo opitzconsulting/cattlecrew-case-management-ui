@@ -1,10 +1,12 @@
 # CattleCrew Case Management UI
  
-Welcome to the CattleCrew Case Management UI source code!
+ Welcome to the CattleCrew Case Management UI source code!
+ 
+![intro][intro]
 
 The CattleCrew Case Management UI provides an interface to interact with CMMN 1.1 models in the camunda BPM platform via REST. It is development with [AngularJS](https://angularjs.org/) and uses [Grunt](http://gruntjs.com/) as build tool.
 
-It is relying on the following libraries:
+The following libraries are used in this project:
 
 * __cmmn-js__: provides diagram rendering support for CMMN 1.1 models 
 
@@ -14,7 +16,7 @@ Download the desired release from the [Release page](https://github.com/opitzcon
 
 Follow the instructions on https://camunda.org/ to adjust a CMMN Project.
 
-After adjusting the backend call the CattleCrew Case Management UI webapp (e.g. http://localhost:8080/cattlecrew-case-management-ui/) via your browser to interact with your CMMN project.
+After adjusting the backend you should call the CattleCrew Case Management UI webapp (e.g. [http://localhost:8080/cattlecrew-case-management-ui/](http://localhost:8080/cattlecrew-case-management-ui/)) via your browser to interact with your CMMN project.
 
 ## Development
 
@@ -65,11 +67,13 @@ grunt test
 
 The backend part is not in scope of this project but in most cases you need JDK 7+ and [Maven](https://maven.apache.org/) 3.2.1+.
 
-Go to https://camunda.org/ and follow the instructions to
+Go to [https://camunda.org/](https://camunda.org/) and follow the instructions to
 
 * setup an application server,
 * create a BPM Project
 * and add a CMMN 1.1 model. 
+
+You could follow the instructions on the [_Get started with Camunda and CMMN 1.1 guide_](https://docs.camunda.org/get-started/cmmn11/).
 
 ### Structure of this project
 
@@ -111,3 +115,5 @@ Licensed under the [MIT license](./LICENSE).
 ## Build Status
 
 [![Build Status](https://travis-ci.org/opitzconsulting/cattlecrew-case-management-ui.svg?branch=master)](https://travis-ci.org/opitzconsulting/cattlecrew-case-management-ui)
+
+[intro]: assets/intro.png
