@@ -103,7 +103,7 @@ In place of a guide, just follow the formatting of existing code (and / or use t
 
 ## Help and support
 
-* Have a look at the [blog entry](https://#/) at [CattleCrew Blog](https://thecattlecrew.net/)
+* Have a look at the [blog entry](https://thecattlecrew.net/2017/02/23/published-cattlecrew-case-management-ui/) at [CattleCrew Blog](https://thecattlecrew.net/)
 * Contact us via [e-mail](mailto:halil.hancioglu@opitz-consulting.com) 
 * Visit our website [http://www.opitz-consulting.com/](http://www.opitz-consulting.com/) to get more detailed info about us
 
